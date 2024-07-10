@@ -10,7 +10,7 @@ class LoginPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    RxBool isLogin = false.obs;
+    RxBool isLogin = true.obs;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(

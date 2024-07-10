@@ -7,9 +7,17 @@ var darkTheme = ThemeData(
 
   brightness: Brightness.dark,
   useMaterial3: true,
-
-
-
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.black
+  ),
+  inputDecorationTheme: InputDecorationTheme(
+    fillColor: Colors.grey[900],
+    filled: true,
+    border: UnderlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(10)
+    )
+  ),
   colorScheme: const ColorScheme.dark(
     primary: dPrimaryColor,
     onPrimary: donBackgroundColor,

@@ -38,6 +38,10 @@ dependencies:
   flutter_svg: ^2.0.10+1 # For SVG Icons
   slide_to_act: ^2.0.2 # Slide to go
   get: ^4.6.6 # For state management
+  firebase_core: ^3.1.1 # For Firebase
+  firebase_auth: ^5.1.1 # For Firebase Authentication
+  firebase_storage: ^12.1.1 # For Cloud FireStore
+  cloud_firestore: ^5.1.0
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +70,8 @@ flutter:
   assets:
     - assets/icons/
     - assets/icons/chat-icon.svg
+    - assets/images/sample.jpg
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

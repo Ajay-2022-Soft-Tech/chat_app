@@ -8,6 +8,7 @@ class Assetsimage{
 
   static const boyPic = "$imagesPath/boy_pic.png";
   static const girlPic = "$imagesPath/girl_pic.png";
+  static const splashPicture = "$imagesPath/splash.png";
 
 
 
@@ -18,5 +19,9 @@ class Assetsimage{
   static const plugSVG = "$iconsPath/plug.svg";
 
 
-
+  static const chatStatusSvg = "$iconsPath/chatStatus.svg";
+  static const sendButtonSvg = "$iconsPath/send.svg";
+  static const gallerySvg = "$iconsPath/gallery.svg";
+  static const documentSvg = "$iconsPath/document.svg";
+  static const chatMicSvg = "$iconsPath/mic.svg";
 }

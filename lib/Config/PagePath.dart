@@ -1,5 +1,9 @@
 import 'package:chat_app/Pages/SplashPage/Auth/AuthPage.dart';
+import 'package:chat_app/Pages/SplashPage/ChatPage/ChatPage.dart';
+import 'package:chat_app/Pages/SplashPage/HomePage/HomePage.dart';
 import 'package:chat_app/Pages/SplashPage/LoginPage/LoginPage.dart';
+import 'package:chat_app/Pages/SplashPage/ProfilePage/ProfilePage.dart';
+import 'package:chat_app/Pages/SplashPage/ProfilePage/UpdateProfile/UpdateProfile.dart';
 import 'package:get/get.dart';
 
 var pagePath =[
@@ -12,6 +16,27 @@ var pagePath =[
   GetPage(
       name:"/loginPage",
       page:()=> LoginPage(),
+      transition: Transition.rightToLeft
+  ),
+
+  GetPage(
+      name:"/homePage",
+      page:()=> Homepage(),
+      transition: Transition.rightToLeft
+  ),
+  GetPage(
+      name:"/chatPage",
+      page:()=> ChatPage(),
+      transition: Transition.rightToLeft
+  ),
+  GetPage(
+      name:"/profilePage",
+      page:()=> ProfilePage(),
+      transition: Transition.rightToLeft
+  ),
+  GetPage(
+      name:"/updateProfile",
+      page:()=> UpdateProfile(),
       transition: Transition.rightToLeft
   ),
 ];
