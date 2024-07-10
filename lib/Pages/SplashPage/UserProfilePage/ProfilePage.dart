@@ -1,12 +1,13 @@
 import 'package:chat_app/Controller/AuthController.dart';
 import 'package:chat_app/Controller/ProfileController.dart';
-import 'package:chat_app/Pages/SplashPage/ProfilePage/Widgets/UserInfo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+import 'Widgets/UserInfo.dart';
+
+class UserProfilePage extends StatelessWidget {
+  const UserProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
