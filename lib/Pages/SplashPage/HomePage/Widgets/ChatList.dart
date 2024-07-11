@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../Config/Images.dart';
+
 class ChatList extends StatelessWidget {
   const ChatList({super.key, e});
 
@@ -14,11 +16,11 @@ class ChatList extends StatelessWidget {
           onTap: (){
             Get.offAllNamed("/chatPage");
           },
-            child: ChatTile(imageUrl: '',name: 'Ajay Kumar',lastChat: 'Baad me baat krte',lastTime: '12:09 PM',)),
-        ChatTile(imageUrl: '',name: 'Dewangan',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
-        ChatTile(imageUrl: '',name: 'Anjana',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
-        ChatTile(imageUrl: '',name: 'Kumar',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
-        ChatTile(imageUrl: '',name: 'Saurav',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
+            child: ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Ajay Kumar',lastChat: 'Baad me baat krte',lastTime: '12:09 PM',)),
+        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Dewangan',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
+        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Anjana',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
+        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Kumar',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
+        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Saurav',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
       ],
     );
 

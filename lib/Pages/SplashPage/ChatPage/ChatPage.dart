@@ -1,32 +1,42 @@
 import 'package:chat_app/Config/Images.dart';
+import 'package:chat_app/Controller/ChatController.dart';
+import 'package:chat_app/Model/ChatModel.dart';
+import 'package:chat_app/Model/UserModel.dart';
 import 'package:chat_app/Pages/SplashPage/ChatPage/Widgets/ChatBubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../../../Model/ChatModel.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  final UserModel userModel;
+  const ChatPage({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
+
+    ChatController chatController = Get.put(ChatController());
+
+    TextEditingController messageController = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.grey[800],
       appBar: AppBar(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))),
-
         backgroundColor: Colors.black,
-        title: const Row(
-          children: [
-            CircleAvatar(backgroundColor: Colors.lightBlueAccent,),
-            SizedBox(width: 10,),
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))),
+        leading: Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Image.asset(Assetsimage.boyPic),
+        ),
+        title:
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Ajay Ji",style: TextStyle(color: Colors.white),),
+                Text(userModel.name ??"User",style: TextStyle(color: Colors.white),),
                 Text("Online",style: TextStyle(color: Colors.white,fontSize: 12),)
               ],
             ),
-          ],
-        ),
+
         actions: [
           IconButton(
               onPressed: (){},
@@ -51,8 +61,9 @@ class ChatPage extends StatelessWidget {
             SizedBox(width: 10,),
             SvgPicture.asset(Assetsimage.chatMicSvg,color: Colors.white,width: 25,),
             SizedBox(width: 10,),
-            const Expanded(
+             Expanded(
                 child: TextField(
+                  controller: messageController,
                   decoration: InputDecoration(
                     filled: false,
                     hintText: 'Type message...',
@@ -64,11 +75,24 @@ class ChatPage extends StatelessWidget {
             ),
             SvgPicture.asset(Assetsimage.gallerySvg,color: Colors.white,width: 25),
             SizedBox(width: 20,),
-            Container(
-              height: 25,
-                width: 25,
+            InkWell(
+              onTap: (){
 
-                child: SvgPicture.asset(Assetsimage.sendButtonSvg,width: 25)),
+                var newChat =  ChatModel(
+
+
+                );
+                if(messageController.text.isNotEmpty){
+                  chatController.sendMessage(userModel.id!, messageController.text,);
+                  messageController.clear();
+                }
+              },
+              child: Container(
+                height: 25,
+                  width: 25,
+
+                  child: SvgPicture.asset(Assetsimage.sendButtonSvg,width: 25)),
+            ),
 
           ],
         ),
@@ -78,21 +102,38 @@ class ChatPage extends StatelessWidget {
 
       body: Padding(
         padding: EdgeInsets.all(10),
-        child: ListView(
-          children:const [
-            Column(
-              children: [
-                ChatBubble(message:'This is text SMS' ,isComing: true,status: 'Read',time: '12:56 PM',imageUrl: '',),
-                ChatBubble(message:'Aaj Kahan Ghumne Jana h' ,isComing: false,status: 'Read',time: '12:56 PM',imageUrl: "https://images.app.goo.gl/NAu7hzFfJw8h91Zk6",),
-                ChatBubble(message:'This is text SMS' ,isComing: true,status: 'Read',time: '12:56 PM',imageUrl: '',),
-                ChatBubble(message:'Aaj Kahan Ghumne Jana h' ,isComing: true,status: 'Read',time: '12:56 PM',imageUrl: "assets/images/sample1.jpg",),
-                ChatBubble(message:'This is text SMS' ,isComing: true,status: 'Read',time: '12:56 PM',imageUrl: '',),
-                ChatBubble(message:'Aaj Kahan Ghumne Jana h' ,isComing: false ,status: 'Read',time: '12:56 PM',imageUrl: "https://images.app.goo.gl/NAu7hzFfJw8h91Zk6",),
+        child: StreamBuilder<List<ChatModel>>(
+          stream: chatController.getMessages(userModel.id!),
+          builder: (context , snapshot){
 
-              ],
-            ),
-          ]
-        ),
+            if(snapshot.connectionState == ConnectionState.waiting){
+              return Center(child: CircularProgressIndicator());
+
+            }
+            if(snapshot.hasError){
+              return Center(
+                child: Text("Error: ${snapshot.error}"),
+              );
+            }
+            if(snapshot.data ==null){
+              return Center(
+                child: Text("No Messages"),
+              );
+            }
+            else{
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index){
+                  // DateTime timestamp = DateTime.parse(snapshot.data![index].timestamp!);
+                    
+                    return ChatBubble(message: snapshot.data![index].message!, isComing: isComing, time: time, status: status, imageUrl: imageUrl)
+
+                  }
+
+              );
+            }
+          },
+        )
       ),
 
     );

@@ -96,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                                     color: Colors.grey[900],
                                     shape: BoxShape.circle
                                 ),
-                                child: profileController.currentUser.value.profileImage == "" || profileController.currentUser.value.profileImage ==null
+                                child: profileController.currentUser.value.profileImage ==null || profileController.currentUser.value.profileImage ==""
                                     ?Icon(Icons.camera_alt)
                                     : ClipRRect(
                                   borderRadius: BorderRadius.circular(100),
@@ -160,10 +160,13 @@ class ProfilePage extends StatelessWidget {
                               ),
                           ),
                           SizedBox(height: 20,),
+                          Obx(()=>
+                          profileController.isLoading.value ? CircularProgressIndicator():
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Obx(()=>isEdit.value ? PrimaryButton(
+                              Obx(()=>
+                              isEdit.value ? PrimaryButton(
                                   btnName: 'Save',
                                   icon: Icons.save,
                                   onTap: ()async{
@@ -177,8 +180,10 @@ class ProfilePage extends StatelessWidget {
                                   onTap: (){
                                     isEdit.value = true;
 
-                                  }),)
+                                  })
+                              ),
                             ],
+                          ),
                           ),
                           SizedBox(height: 20,),
 

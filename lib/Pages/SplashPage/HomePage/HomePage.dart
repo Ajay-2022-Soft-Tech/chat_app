@@ -1,7 +1,9 @@
+import 'package:chat_app/Config/ImagePicker.dart';
 import 'package:chat_app/Config/Strings.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/ChatList.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/ChatTile.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/TabBar.dart';
+import 'package:chat_app/Pages/SplashPage/ProfilePage/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -21,6 +23,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
 
     TabController tabController = TabController(length: 3, vsync: this);
     ProfileController profileController = Get.put(ProfileController());
+    ImagePickerController imagePickerController = Get.put(ImagePickerController());
 
     return Scaffold(
       appBar: AppBar(
@@ -28,12 +31,16 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
         backgroundColor: Colors.black,
         actions: [
           IconButton(
-              onPressed: (){},
+              onPressed: (){
+                // imagePickerController.pickImage();
+              },
               icon: Icon(Icons.search)
           ),
           IconButton(
-              onPressed: (){
-                Get.toNamed("/profilePage");
+              onPressed: ()async{
+                // Get.toNamed("/profilePage");
+                await profileController.getUserDetails();
+                Get.to(ProfilePage());
               },
               icon: Icon(Icons.more_vert)
           ),
@@ -55,7 +62,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-
+          Get.toNamed("/contactPage");
         },
         child: Icon(
           Icons.messenger,

@@ -6,6 +6,8 @@ import 'package:chat_app/Pages/SplashPage/UserProfilePage/ProfilePage.dart';
 import 'package:chat_app/Pages/SplashPage/UserProfilePage/UpdateProfile/UpdateProfile.dart';
 import 'package:get/get.dart';
 
+import '../Pages/SplashPage/ContactPage/ContactPage.dart';
+
 var pagePath =[
 
   GetPage(
@@ -24,9 +26,14 @@ var pagePath =[
       page:()=> Homepage(),
       transition: Transition.rightToLeft
   ),
+  // GetPage(
+  //     name:"/chatPage",
+  //     page:()=> ChatPage(),
+  //     transition: Transition.rightToLeft
+  // ),
   GetPage(
-      name:"/chatPage",
-      page:()=> ChatPage(),
+      name:"/contactPage",
+      page:()=> ContactPage(),
       transition: Transition.rightToLeft
   ),
   // GetPage(

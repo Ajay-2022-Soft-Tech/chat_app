@@ -95,8 +95,8 @@ class AuthController extends GetxController{
       email: email,
       name: name,
       id: auth.currentUser!.uid,
-      // phoneNumber: auth.currentUser!.phoneNumber,
-      // profileImage: auth.currentUser!.photoURL,
+      // phoneNumber: auth.currentUser!.phoneNumber!,
+      // profileImage: auth.currentUser!.photoURL!,
     );
 
     try{

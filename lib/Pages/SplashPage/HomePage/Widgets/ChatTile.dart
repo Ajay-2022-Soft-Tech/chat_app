@@ -23,11 +23,24 @@ class ChatTile extends StatelessWidget {
             Row(
               children: [
 
-                // Image.asset(imageUrl),
-                CircleAvatar(
-                  backgroundColor: Colors.lightBlueAccent,
-                  radius: 20,
+
+                Container(
+                  width: 60,
+                  height: 60,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.network(
+                      imageUrl,
+                      width: 60,
+                      fit: BoxFit.cover,
+                    
+                    ),
+                  ),
                 ),
+                // CircleAvatar(
+                //   backgroundColor: Colors.lightBlueAccent,
+                //   radius: 20,
+                // ),
                 SizedBox(width: 15,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

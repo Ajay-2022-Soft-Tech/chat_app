@@ -42,6 +42,8 @@ dependencies:
   firebase_auth: ^5.1.1 # For Firebase Authentication
   firebase_storage: ^12.1.1 # For Cloud FireStore
   cloud_firestore: ^5.1.0
+  image_picker: ^1.1.2 # for changing profile pic
+  uuid: ^4.4.0 # for Unique Id
 
 dev_dependencies:
   flutter_test:

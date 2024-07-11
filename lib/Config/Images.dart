@@ -6,6 +6,9 @@ class Assetsimage{
 
   // PNG IMAGES ONLY
 
+  static const defaultProfileUrl = "https://firebasestorage.googleapis.com/v0/b/chatapp-ae774.appspot.com/o/boy_pic.png?alt=media&token=5731c9f8-31bc-4c66-8b23-a658e810f5e4";
+
+
   static const boyPic = "$imagesPath/boy_pic.png";
   static const girlPic = "$imagesPath/girl_pic.png";
   static const splashPicture = "$imagesPath/splash.png";
