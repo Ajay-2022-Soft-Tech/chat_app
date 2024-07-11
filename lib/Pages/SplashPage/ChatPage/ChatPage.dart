@@ -126,7 +126,7 @@ class ChatPage extends StatelessWidget {
                   itemBuilder: (context, index){
                   // DateTime timestamp = DateTime.parse(snapshot.data![index].timestamp!);
                     
-                    return ChatBubble(message: snapshot.data![index].message!, isComing: isComing, time: time, status: status, imageUrl: imageUrl)
+                    return ChatBubble(message: snapshot.data![index].message!, isComing: snapshot.data![index].senderId! = , time: time, status: status, imageUrl: imageUrl)
 
                   }
 
