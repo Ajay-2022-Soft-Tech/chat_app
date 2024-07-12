@@ -50,24 +50,29 @@ class ChatTile extends StatelessWidget {
                   //   radius: 20,
                   // ),
                   SizedBox(width: 15,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(name,
-                        style: TextStyle(
-                            color: Colors.white
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(name,
+                          style: TextStyle(
+                              color: Colors.white
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 5,),
-                      Text(lastChat,
-                        style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 12
+                        SizedBox(height: 5,),
+                        Text(lastChat,
+                          maxLines: 1,
+                          style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 12
+                    
+                          ),
+                        )
+                      ],
+                    ),
 
-                        ),
-                      )
-                    ],
                   ),
+                  SizedBox(width: 15,)
                 ],
               ),
             ),

@@ -27,4 +27,5 @@ class Assetsimage{
   static const gallerySvg = "$iconsPath/gallery.svg";
   static const documentSvg = "$iconsPath/document.svg";
   static const chatMicSvg = "$iconsPath/mic.svg";
+  static const chatEmoji = "$iconsPath/emoji.svg";
 }

@@ -60,10 +60,13 @@ class AuthPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 20),
                   child: InkWell(
+
+
                     onTap: (){
 
                     },
-                    splashColor: Colors.lightBlueAccent,
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
                       height: 50,
@@ -76,6 +79,8 @@ class AuthPage extends StatelessWidget {
                   ),
                 ),
                 InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: (){
                     Get.offAllNamed("/loginPage");
 

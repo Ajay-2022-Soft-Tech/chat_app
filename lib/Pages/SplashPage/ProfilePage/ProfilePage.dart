@@ -7,6 +7,7 @@ import 'package:chat_app/Controller/ProfileController.dart';
 import 'package:chat_app/Widget/PrimaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -64,8 +65,10 @@ class ProfilePage extends StatelessWidget {
                             children: [
                               Obx(()=> isEdit.value?
                               InkWell(
+                                splashColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
                                 onTap: ()async{
-                                  imagePath.value = await imagePickerController.pickImage();
+                                  await imagePickerController.pickImage();
                                   print("Image picked"+imagePath.value);
 
                                 }

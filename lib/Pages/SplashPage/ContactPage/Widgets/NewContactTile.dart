@@ -10,9 +10,11 @@ class NewContactTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+
       onTap: ontap,
       borderRadius: BorderRadius.circular(20),
-      splashColor: Colors.lightBlueAccent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
