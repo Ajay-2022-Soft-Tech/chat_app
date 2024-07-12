@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Config/ImagePicker.dart';
 import 'package:chat_app/Controller/AuthController.dart';
 import 'package:chat_app/Controller/ProfileController.dart';
@@ -100,8 +101,15 @@ class ProfilePage extends StatelessWidget {
                                     ?Icon(Icons.camera_alt)
                                     : ClipRRect(
                                   borderRadius: BorderRadius.circular(100),
-                                  child: Image.network(profileController.currentUser.value.profileImage!,
-                                  fit: BoxFit.cover,)
+                                  child:CachedNetworkImage(
+                                    imageUrl: profileController.currentUser.value.profileImage!,
+                                    fit: BoxFit.cover,
+                                    width: 70,
+                                    placeholder: (context, url) =>
+                                        CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                  )
+
                                 ),
 
                               ),

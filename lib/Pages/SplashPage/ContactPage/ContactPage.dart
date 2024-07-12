@@ -1,6 +1,7 @@
 import 'package:chat_app/Config/Images.dart';
 import 'package:chat_app/Controller/ChatController.dart';
 import 'package:chat_app/Controller/ContactController.dart';
+import 'package:chat_app/Controller/ProfileController.dart';
 import 'package:chat_app/Pages/SplashPage/ChatPage/ChatPage.dart';
 import 'package:chat_app/Pages/SplashPage/ContactPage/Widgets/ContactSearch.dart';
 import 'package:chat_app/Pages/SplashPage/ContactPage/Widgets/NewContactTile.dart';
@@ -19,6 +20,7 @@ class ContactPage extends StatelessWidget {
 
     ContactController contactController = Get.put(ContactController());
     ChatController chatController = Get.put(ChatController());
+    ProfileController profileController = Get.put(ProfileController());
 
     return Scaffold(
       appBar: AppBar(
@@ -63,10 +65,14 @@ class ContactPage extends StatelessWidget {
                         InkWell(
                           onTap: (){
                             Get.to(ChatPage(userModel: e,));
-
-
                           },
-                          child:ChatTile(imageUrl: e.profileImage ?? Assetsimage.defaultProfileUrl,name: e.name ?? "User",lastChat: e.about ??"Hey There",lastTime: "",),
+                          child:ChatTile(
+                            imageUrl: e.profileImage ?? Assetsimage.defaultProfileUrl,
+                            name: e.name ?? "User",
+                            lastChat: e.about ??"Hey There",
+
+                            lastTime: e.email== profileController.currentUser.value.email ? "You": "",
+                          ),
 
                         ),
 

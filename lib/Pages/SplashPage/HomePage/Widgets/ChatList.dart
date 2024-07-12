@@ -1,3 +1,6 @@
+import 'package:chat_app/Controller/ChatController.dart';
+import 'package:chat_app/Controller/ContactController.dart';
+import 'package:chat_app/Pages/SplashPage/ChatPage/ChatPage.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/ChatTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,18 +13,32 @@ class ChatList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        InkWell(
-          onTap: (){
-            Get.offAllNamed("/chatPage");
-          },
-            child: ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Ajay Kumar',lastChat: 'Baad me baat krte',lastTime: '12:09 PM',)),
-        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Dewangan',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
-        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Anjana',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
-        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Kumar',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
-        ChatTile(imageUrl: Assetsimage.defaultProfileUrl,name: 'Saurav',lastChat: 'Abhi me baat krte',lastTime: '11:02 AM',),
-      ],
+    ContactController contactController = Get.put(ContactController());
+    return RefreshIndicator(
+
+
+    child: Obx(()=>
+        ListView(
+            children: contactController.chatRoomList.map((e)=>
+                InkWell(
+                  onTap: (){
+                    Get.to(ChatPage(userModel: e.receiver!));
+                  },
+                  child: ChatTile(
+                    imageUrl: e.receiver!.profileImage ?? Assetsimage.defaultProfileUrl,
+                    name: e.receiver!.name ?? "User",
+                    lastChat: e.lastMessage ?? "Last Message",
+                    lastTime: e.lastMessageTimestamp ?? "Last Time",
+                  ),
+                )
+
+            ).toList()
+        )
+    ),
+
+        onRefresh: () {
+      return contactController.getChatRoomList();
+    }
     );
 
 

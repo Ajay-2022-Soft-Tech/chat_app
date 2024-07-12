@@ -1,11 +1,10 @@
 import 'package:chat_app/Config/ImagePicker.dart';
 import 'package:chat_app/Config/Strings.dart';
+import 'package:chat_app/Controller/ContactController.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/ChatList.dart';
-import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/ChatTile.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/TabBar.dart';
 import 'package:chat_app/Pages/SplashPage/ProfilePage/ProfilePage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../Controller/ProfileController.dart';
@@ -23,7 +22,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
 
     TabController tabController = TabController(length: 3, vsync: this);
     ProfileController profileController = Get.put(ProfileController());
-    ImagePickerController imagePickerController = Get.put(ImagePickerController());
+    ContactController contactController = Get.put(ContactController());
 
     return Scaffold(
       appBar: AppBar(
@@ -33,6 +32,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
           IconButton(
               onPressed: (){
                 // imagePickerController.pickImage();
+                contactController.getChatRoomList();
               },
               icon: Icon(Icons.search)
           ),
@@ -52,7 +52,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
         padding: const EdgeInsets.all(10),
         child: TabBarView(
           controller: tabController,
-          children: [
+          children: const [
             ChatList(),
             Text('Group'),
             Text('Calls'),
@@ -64,7 +64,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
         onPressed: (){
           Get.toNamed("/contactPage");
         },
-        child: Icon(
+        child: const Icon(
           Icons.messenger,
           color: Colors.lightBlueAccent,
         ),

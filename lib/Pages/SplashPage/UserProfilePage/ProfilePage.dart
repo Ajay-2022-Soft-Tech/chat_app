@@ -1,5 +1,7 @@
+import 'package:chat_app/Config/Images.dart';
 import 'package:chat_app/Controller/AuthController.dart';
 import 'package:chat_app/Controller/ProfileController.dart';
+import 'package:chat_app/Model/UserModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +9,8 @@ import 'package:get/get.dart';
 import 'Widgets/UserInfo.dart';
 
 class UserProfilePage extends StatelessWidget {
-  const UserProfilePage({super.key});
+  final UserModel userModel;
+  const UserProfilePage({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,11 @@ class UserProfilePage extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          LoginUserInfo(),
+          LoginUserInfo(
+            profileImage: userModel.profileImage ?? Assetsimage.defaultProfileUrl,
+            userName: userModel.name ?? "User",
+            userEmail: userModel.email ?? "",
+          ),
           Spacer(),
           ElevatedButton(
               onPressed: (){
