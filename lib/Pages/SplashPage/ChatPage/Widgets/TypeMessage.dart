@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../Config/Images.dart';
 import '../../../../Controller/ChatController.dart';
 import '../../../../Model/UserModel.dart';
+import '../../../../Widget/ImagePickerBottomSheet.dart';
 
 class TypeMessage extends StatelessWidget {
   final UserModel userModel;
@@ -59,7 +61,7 @@ class TypeMessage extends StatelessWidget {
           chatController.selectedImagePath.value == ""?
           InkWell(
             onTap: ()async{
-              chatController.selectedImagePath.value = await imagePickerController.pickImage();
+              ImagePickerBottomSheet(chatController, imagePickerController);
             },
             child: Container(
               width: 25,
@@ -121,4 +123,5 @@ class TypeMessage extends StatelessWidget {
 
     );
   }
+
 }

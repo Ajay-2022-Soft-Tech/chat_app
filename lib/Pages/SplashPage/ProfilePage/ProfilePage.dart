@@ -67,12 +67,13 @@ class ProfilePage extends StatelessWidget {
                               InkWell(
                                 splashColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
-                                onTap: ()async{
-                                  await imagePickerController.pickImage();
-                                  print("Image picked"+imagePath.value);
+                                onTap: () async {
+                                  imagePath.value =
+                                  await imagePickerController
+                                      .pickImage(ImageSource.gallery);
+                                  print("Image Picked" + imagePath.value);
+                                },
 
-                                }
-                                ,
                                 child:Container(
                                   width: 150,
                                     height: 150,

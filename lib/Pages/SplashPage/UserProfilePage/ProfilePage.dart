@@ -64,7 +64,7 @@ class ProfilePage extends StatelessWidget {
                                 onTap: () async {
                                   imagePath.value =
                                   await imagePickerController
-                                      .pickImage();
+                                      .pickImage(ImageSource.gallery);
                                   print("Image Picked" + imagePath.value);
                                 },
                                 child: Container(

@@ -26,7 +26,7 @@ class ChatBubble extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-                borderRadius: isComing ? BorderRadius.only(
+                borderRadius: isComing ? const BorderRadius.only(
                     topRight: Radius.circular(10),
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10)):
