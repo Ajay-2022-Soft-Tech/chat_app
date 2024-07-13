@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -18,9 +16,11 @@ class ChatController extends GetxController {
   RxBool isLoading = false.obs;
   var uuid = Uuid();
   RxString selectedImagePath = "".obs;
-  @override
   ProfileController profileController = Get.put(ProfileController());
   ContactController contactController = Get.put(ContactController());
+
+
+
   String getRoomId(String targetUserId) {
     String currentUserId = auth.currentUser!.uid;
     if (currentUserId[0].codeUnitAt(0) > targetUserId[0].codeUnitAt(0)) {
@@ -101,13 +101,13 @@ class ChatController extends GetxController {
       await db.collection("chats").doc(roomId).set(
         roomDetails.toJson(),
       );
-      // await contactController.saveContact(targetUser);
+      await contactController.saveContact(targetUser);
+
     } catch (e) {
       print(e);
     }
     isLoading.value = false;
   }
-
   Stream<List<ChatModel>> getMessages(String targetUserId) {
     String roomId = getRoomId(targetUserId);
     return db

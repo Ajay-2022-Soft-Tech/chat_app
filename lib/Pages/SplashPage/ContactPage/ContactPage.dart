@@ -5,6 +5,7 @@ import 'package:chat_app/Controller/ProfileController.dart';
 import 'package:chat_app/Pages/SplashPage/ChatPage/ChatPage.dart';
 import 'package:chat_app/Pages/SplashPage/ContactPage/Widgets/ContactSearch.dart';
 import 'package:chat_app/Pages/SplashPage/ContactPage/Widgets/NewContactTile.dart';
+import 'package:chat_app/Pages/SplashPage/GroupsPage/NewGroup/NewGroup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,9 +49,19 @@ class ContactPage extends StatelessWidget {
             ),
 
             const SizedBox(height:10,),
-            NewContactTile(btnName: "New Contact",icon: Icons.person_add,ontap: (){},),
+            NewContactTile(
+              btnName: "New Contact",
+              icon: Icons.person_add,ontap:
+                (){
+                
+                },),
             const SizedBox(height:10,),
-            NewContactTile(btnName: "New Group",icon: Icons.group_add,ontap: (){},),
+            NewContactTile(
+              btnName: "New Group",
+              icon: Icons.group_add,
+              ontap: (){
+                Get.to(NewGroup());
+              },),
             const SizedBox(height:10,),
             Row(
               children: [

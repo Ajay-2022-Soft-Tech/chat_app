@@ -1,6 +1,7 @@
 import 'package:chat_app/Config/ImagePicker.dart';
 import 'package:chat_app/Config/Strings.dart';
 import 'package:chat_app/Controller/ContactController.dart';
+import 'package:chat_app/Pages/SplashPage/GroupsPage/GroupPage.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/ChatList.dart';
 import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/TabBar.dart';
 import 'package:chat_app/Pages/SplashPage/ProfilePage/ProfilePage.dart';
@@ -54,7 +55,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
           controller: tabController,
           children: const [
             ChatList(),
-            Text('Group'),
+            GroupPage(),
             Text('Calls'),
 
           ],
