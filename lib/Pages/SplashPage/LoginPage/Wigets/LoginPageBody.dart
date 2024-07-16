@@ -17,21 +17,19 @@ class LoginPageBody extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
         // height: 300,
         decoration: BoxDecoration(
-            color: Colors.grey[900],
-            borderRadius: BorderRadius.circular(10)
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(20),
+          boxShadow: List.filled(20, BoxShadow(color: Colors.black,blurRadius: 3,spreadRadius: 2))
         ),
         child:Obx(
-          () =>  Row(
+              () =>  Row(
             children: [
               Expanded(child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween
-                    ,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
                         onTap: (){
                           isLogin.value = true;
 
@@ -58,13 +56,10 @@ class LoginPageBody extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
                         onTap: (){
                           isLogin.value = false;
-
                         },
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.sizeOf(context).width/2.7,
                           child: Column(
                             children: [

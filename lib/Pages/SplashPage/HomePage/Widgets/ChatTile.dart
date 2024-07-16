@@ -1,10 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chat_app/Config/Images.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
-import '../../../../Controller/ChatController.dart';
 
 class ChatTile extends StatelessWidget {
 
@@ -16,13 +11,12 @@ class ChatTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ChatController chatController = Get.put(ChatController());
+
       return Container(
-        margin: EdgeInsets.only(bottom: 10),
-        padding: EdgeInsets.all(15),
+        margin: const EdgeInsets.only(bottom: 0,right: 10),
+        padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            borderRadius: BorderRadius.circular(15)
+            borderRadius: BorderRadius.circular(15),
         ),
         child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +24,7 @@ class ChatTile extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 60,
                     height: 60,
                     child: ClipRRect(
@@ -40,26 +34,22 @@ class ChatTile extends StatelessWidget {
                         fit: BoxFit.cover,
                         width: 70,
                         placeholder: (context, url) =>
-                            CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                            const CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
                       )
                     ),
                   ),
-                  // CircleAvatar(
-                  //   backgroundColor: Colors.lightBlueAccent,
-                  //   radius: 20,
-                  // ),
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(name,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white
                           ),
                         ),
-                        SizedBox(height: 5,),
+                        const SizedBox(height: 5,),
                         Text(lastChat,
                           maxLines: 1,
                           style: TextStyle(
@@ -70,9 +60,8 @@ class ChatTile extends StatelessWidget {
                         )
                       ],
                     ),
-
                   ),
-                  SizedBox(width: 15,)
+                  const SizedBox(width: 15,)
                 ],
               ),
             ),
@@ -81,9 +70,8 @@ class ChatTile extends StatelessWidget {
               style: TextStyle(
                   color: Colors.grey[400],
                   fontSize: 12
-
               ),
-            )
+            ),
 
           ],
         ),

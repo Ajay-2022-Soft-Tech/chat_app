@@ -15,18 +15,21 @@ class GroupTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GroupController groupController = Get.put(GroupController());
-    ImagePickerController imagePickerController = Get.put(ImagePickerController());
+    ImagePickerController imagePickerController =
+    Get.put(ImagePickerController());
     RxString imagePath = "".obs;
     RxString groupName = "".obs;
 
-
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: Text('New Group'),
       ),
-      floatingActionButton: Obx(() => FloatingActionButton(
-          backgroundColor: groupName.isEmpty ? Colors.grey
-              : Theme.of(context).colorScheme.primary,
+      floatingActionButton: Obx(
+            () => FloatingActionButton(
+          backgroundColor: groupName.isEmpty
+              ? Colors.grey
+              : Colors.lightBlue,
           onPressed: () {
             if (groupName.isEmpty) {
               Get.snackbar("Error", "Please enter group name");
@@ -46,11 +49,10 @@ class GroupTitle extends StatelessWidget {
       ),
       body: Column(
         children: [
-          SizedBox(height: 10),
           Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
+              color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
@@ -58,7 +60,10 @@ class GroupTitle extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Obx(() => InkWell(
+                      Obx(
+                            () => InkWell(
+
+                              borderRadius: BorderRadius.circular(100),
                           onTap: () async {
                             imagePath.value = await imagePickerController
                                 .pickImage(ImageSource.gallery);
@@ -105,12 +110,13 @@ class GroupTitle extends StatelessWidget {
           SizedBox(height: 10),
           Expanded(
             child: SingleChildScrollView(
+
               child: Column(
                 children: groupController.groupMembers
                     .map(
                       (e) => ChatTile(
                       imageUrl:
-                      e.profileImage ?? Assetsimage.boyPic,
+                      e.profileImage ?? Assetsimage.defaultProfileUrl,
                       name: e.name!,
                       lastChat: e.about ?? '',
                       lastTime: ""),

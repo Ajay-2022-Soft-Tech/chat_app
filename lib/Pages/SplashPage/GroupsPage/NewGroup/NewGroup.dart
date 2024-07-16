@@ -1,11 +1,11 @@
 import 'package:chat_app/Config/Images.dart';
-import 'package:chat_app/Pages/SplashPage/GroupsPage/NewGroup/GroupTItle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../Controller/ContactController.dart';
 import '../../../../Controller/GroupController.dart';
 import '../../HomePage/Widgets/ChatTile.dart';
+import 'GroupTItle.dart';
 import 'SelectedMembers.dart';
 
 class NewGroup extends StatelessWidget {
@@ -15,8 +15,8 @@ class NewGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     ContactController contactController = Get.put(ContactController());
     GroupController groupController = Get.put(GroupController());
-
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
         title: Text('New Group'),
       ),
@@ -24,7 +24,7 @@ class NewGroup extends StatelessWidget {
             () => FloatingActionButton(
           backgroundColor: groupController.groupMembers.isEmpty
               ? Colors.grey
-              : Theme.of(context).colorScheme.primary,
+              : Colors.lightBlue,
           onPressed: () {
             if (groupController.groupMembers.isEmpty) {
               Get.snackbar("Error", "Please select atleast one member");
@@ -47,7 +47,7 @@ class NewGroup extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Contacts on Sampark",
+                  "Contacts on UniChat",
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ],
@@ -83,7 +83,7 @@ class NewGroup extends StatelessWidget {
                           },
                           child: ChatTile(
                             imageUrl: snapshot.data![index].profileImage ??
-                                Assetsimage.boyPic,
+                                Assetsimage.defaultProfileUrl,
                             name: snapshot.data![index].name!,
                             lastChat: snapshot.data![index].about ?? "",
                             lastTime: "",

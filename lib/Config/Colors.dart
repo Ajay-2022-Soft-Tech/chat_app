@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+// Light Theme Colors
+const lPrimaryColor = Color(0xFF6200EE);
+const lOnPrimaryColor = Color(0xFFFFFFFF);
+const lBackgroundColor = Color(0xFFF5F5F5);
+const lContainerColor = Color(0xFFE0E0E0);
 
-
-const dBackgroundColor = Color(0xFFEEEFF5);
-const Color tdRed = Color(0xFFDA4040);
-const Color dPrimaryColor = Color(0xFF5F52EE);
-const Color dContainerColor = Color(0xFF3A3A3A);
-const Color donBackgroundColor = Color(0xFF717171);
-const Color transparent = Color(0xFF717171);
-
+// Dark Theme Colors
+const dPrimaryColor = Color(0xFFBB86FC);
+const donPrimaryColor = Color(0xFF000000);
+const dBackgroundColor = Color(0xFFFFFFFF);
+const dContainerColor = Color(0x8EFFFFFF);
+const donBackgroundColor = Color(0XFF292F3F);

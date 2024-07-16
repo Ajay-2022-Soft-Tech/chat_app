@@ -8,14 +8,15 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      body: const SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 40,),
+            SizedBox(height: 90,),
             Welcomeheading(),
             SizedBox(height: 20,),
             LoginPageBody()
-        
+
           ],
         ),
       ),

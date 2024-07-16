@@ -1,12 +1,13 @@
-import 'package:chat_app/Pages/SplashPage/HomePage/HomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
+import '../Config/CustomMessage.dart';
 import '../Model/ChatModel.dart';
 import '../Model/GroupModel.dart';
 import '../Model/UserModel.dart';
+import '../Pages/SplashPage/HomePage/HomePage.dart';
 import 'ProfileController.dart';
 
 class GroupController extends GetxController {
@@ -60,8 +61,8 @@ class GroupController extends GetxController {
         },
       );
       getGroups();
-      // successMessage("Group Created");
-      Get.offAll(Homepage());
+      successMessage("Group Created");
+      Get.offAll(HomePage());
       isLoading.value = false;
     } catch (e) {
       print(e);

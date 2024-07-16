@@ -1,102 +1,98 @@
 import 'package:chat_app/Config/Images.dart';
-import 'package:chat_app/Controller/ChatController.dart';
-import 'package:chat_app/Controller/ContactController.dart';
-import 'package:chat_app/Controller/ProfileController.dart';
-import 'package:chat_app/Pages/SplashPage/ChatPage/ChatPage.dart';
-import 'package:chat_app/Pages/SplashPage/ContactPage/Widgets/ContactSearch.dart';
-import 'package:chat_app/Pages/SplashPage/ContactPage/Widgets/NewContactTile.dart';
-import 'package:chat_app/Pages/SplashPage/GroupsPage/NewGroup/NewGroup.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../Controller/ChatController.dart';
+import '../../../Controller/ContactController.dart';
+import '../../../Controller/ProfileController.dart';
+import '../ChatPage/ChatPage.dart';
+import '../GroupsPage/NewGroup/NewGroup.dart';
 import '../HomePage/Widgets/ChatTile.dart';
+import 'Widgets/ContactSearch.dart';
+import 'Widgets/NewContactTile.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     RxBool isSearchEnable = false.obs;
-
     ContactController contactController = Get.put(ContactController());
-    ChatController chatController = Get.put(ChatController());
     ProfileController profileController = Get.put(ProfileController());
-
+    ChatController chatController = Get.put(ChatController());
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
         title: Text("Select contact"),
-        backgroundColor: Colors.black,
         actions: [
-          Obx(()=>
-              IconButton(
-                  onPressed: (){
-                    isSearchEnable.value = ! isSearchEnable.value;
-                  },
-                  icon: isSearchEnable.value ? Icon(Icons.close) : Icon(Icons.search)
-              )
+          Obx(
+                () => IconButton(
+              onPressed: () {
+                isSearchEnable.value = !isSearchEnable.value;
+              },
+              icon:
+              isSearchEnable.value ? Icon(Icons.close) : Icon(Icons.search),
+            ),
           )
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
-
-          children:[
-            Obx(()=>
-            isSearchEnable.value ?ContactSearch(): SizedBox(),
-
+          children: [
+            Obx(
+                  () => isSearchEnable.value ? ContactSearch() : SizedBox(),
             ),
-
-            const SizedBox(height:10,),
+            SizedBox(height: 10),
             NewContactTile(
-              btnName: "New Contact",
-              icon: Icons.person_add,ontap:
-                (){
-                
-                },),
-            const SizedBox(height:10,),
+              btnName: "New contact",
+              icon: Icons.person_add,
+
+              ontap: () {},
+            ),
+            SizedBox(height: 10),
             NewContactTile(
               btnName: "New Group",
               icon: Icons.group_add,
-              ontap: (){
+              ontap: () {
                 Get.to(NewGroup());
-              },),
-            const SizedBox(height:10,),
+              },
+            ),
+            SizedBox(height: 10),
             Row(
               children: [
-                Text("Contacts on Chat App",style: TextStyle(color: Colors.grey[500]),),
+                Text("Contacts on UniChat",style: TextStyle(color: Colors.grey,fontFamily: "AlegreyaSansSC"),),
               ],
             ),
-            SizedBox(height:10,),
-
-            Obx(()=>
-                Column(
-                    children: contactController.userList.map((e)=>
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: (){
-                            Get.to(ChatPage(userModel: e,));
-                          },
-                          child:ChatTile(
-                            imageUrl: e.profileImage ?? Assetsimage.defaultProfileUrl,
-                            name: e.name ?? "User",
-                            lastChat: e.about ??"Hey There",
-
-                            lastTime: e.email== profileController.currentUser.value.email ? "You": "",
-                          ),
-
-                        ),
-
-                    ).toList()
-
+            SizedBox(height: 10),
+            Obx(
+                  () => Column(
+                children: contactController.userList
+                    .map(
+                      (e) => InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () {
+                      Get.to(ChatPage(userModel: e));
+                    },
+                    child: ChatTile(
+                      imageUrl:
+                      e.profileImage ?? Assetsimage.defaultProfileUrl,
+                      name: e.name ?? "User",
+                      lastChat: e.about ?? "Hey there",
+                      lastTime: e.email ==
+                          profileController.currentUser.value.email
+                          ? "You"
+                          : "",
+                    ),
+                  ),
                 )
-
-            ),
-
-    ]),
-
+                    .toList(),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
+import '../Model/AudioCall.dart';
 import '../Model/ChatModel.dart';
 import '../Model/ChatRoomModel.dart';
 import '../Model/UserModel.dart';
@@ -16,11 +17,9 @@ class ChatController extends GetxController {
   RxBool isLoading = false.obs;
   var uuid = Uuid();
   RxString selectedImagePath = "".obs;
+  @override
   ProfileController profileController = Get.put(ProfileController());
   ContactController contactController = Get.put(ContactController());
-
-
-
   String getRoomId(String targetUserId) {
     String currentUserId = auth.currentUser!.uid;
     if (currentUserId[0].codeUnitAt(0) > targetUserId[0].codeUnitAt(0)) {
@@ -102,12 +101,12 @@ class ChatController extends GetxController {
         roomDetails.toJson(),
       );
       await contactController.saveContact(targetUser);
-
     } catch (e) {
       print(e);
     }
     isLoading.value = false;
   }
+
   Stream<List<ChatModel>> getMessages(String targetUserId) {
     String roomId = getRoomId(targetUserId);
     return db
@@ -133,21 +132,21 @@ class ChatController extends GetxController {
     );
   }
 
-  // Stream<List<CallModel>> getCalls() {
-  //   return db
-  //       .collection("users")
-  //       .doc(auth.currentUser!.uid)
-  //       .collection("calls")
-  //       .orderBy("timestamp", descending: true)
-  //       .snapshots()
-  //       .map(
-  //         (snapshot) => snapshot.docs
-  //         .map(
-  //           (doc) => CallModel.fromJson(doc.data()),
-  //     )
-  //         .toList(),
-  //   );
-  // }
+  Stream<List<CallModel>> getCalls() {
+    return db
+        .collection("users")
+        .doc(auth.currentUser!.uid)
+        .collection("calls")
+        .orderBy("timestamp", descending: true)
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+          .map(
+            (doc) => CallModel.fromJson(doc.data()),
+      )
+          .toList(),
+    );
+  }
 
   Stream<int> getUnreadMessageCount(
       String roomId,

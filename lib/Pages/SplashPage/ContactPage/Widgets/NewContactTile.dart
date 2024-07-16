@@ -1,39 +1,47 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class NewContactTile extends StatelessWidget {
-
   final String btnName;
   final IconData icon;
   final VoidCallback ontap;
-  const NewContactTile({super.key, required this.btnName, required this.icon, required this.ontap});
+  const NewContactTile(
+      {super.key,
+        required this.btnName,
+        required this.icon,
+        required this.ontap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-
-      onTap: ontap,
-      borderRadius: BorderRadius.circular(20),
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
+      onTap: ontap,
       child: Container(
-        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.grey[800],
-          borderRadius: BorderRadius.circular(20)
+          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).colorScheme.primary,
         ),
         child: Row(
           children: [
             Container(
-              width: 55,
-              height: 55,
-              decoration: BoxDecoration(
-                color: Colors.lightBlueAccent[700],
-                shape: BoxShape.circle
+              width: 70,
+              height: 70,
+              child: Icon(
+                icon,
+                size: 30,
+                color: Colors.lightBlue,
               ),
-              child: Icon(icon),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
-            SizedBox(width: 15,),
-            Text(btnName,style: TextStyle(color: Colors.white,fontSize: 18),)
+            SizedBox(width: 20),
+            Text(
+              btnName,
+              style: Theme.of(context).textTheme.bodyLarge,
+            )
           ],
         ),
       ),

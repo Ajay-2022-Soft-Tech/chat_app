@@ -4,109 +4,83 @@ import 'package:get/get.dart';
 
 import '../Model/UserModel.dart';
 
-class AuthController extends GetxController{
-
+class AuthController extends GetxController {
   final auth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;
 
-  //  For Login
+  // For Login
 
-  Future<void> login(String email, String password)async{
-
+  Future<void> login(String email, String password) async {
     isLoading.value = true;
-    try{
-
-    await auth.signInWithEmailAndPassword(
+    try {
+      await auth.signInWithEmailAndPassword(
         email: email,
-        password: password
-    );
-
-    Get.offAllNamed('/homePage');
-    print('account created 🔥🔥');
-    } on FirebaseAuthException catch (e){
-      if (e.code =='Weak-Password'){
-        print('The password provided is too weak');
-
-      }
-      if (e.code=='user not found'){
-        print('Wrong password for that email');
-      }
-      else if (e.code =='email-already-in-use'){
-        print("The account already exists for that email");
-      }
-      else if (e.code =='Wrong password'){
-        print("Wrong password provided for that user");
-      }
-      else {
-        print(e.code);
-      }
-    }catch(e){
-      print(e);
-    }
-    isLoading.value = false;
-  }
-
-
-
-  Future<void> createUser(String email, String password,String name)async {
-    isLoading.value = true;
-
-    try{
-      await auth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
+        password: password,
       );
-      await initUser(email,name);
-      Get.offAllNamed('/homePage');
-      print('account created 🔥🔥');
-
-
-    }on FirebaseAuthException catch (e){
-      if (e.code =='Weak-Password'){
-        print('The password provided is too weak');
-
+      Get.offAllNamed("/homePage");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
       }
-
-      else if (e.code =='email-already-in-use'){
-        print("The account already exists for that email");
-      }
-    }
-    catch(e){
+    } catch (e) {
       print(e);
     }
     isLoading.value = false;
-
   }
 
+  Future<void> createUser(String email, String password, String name) async {
+    isLoading.value = true;
+    try {
+      await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      await initUser(email, name);
+      print("Account Created 🔥🔥");
+      Get.offAllNamed("/homePage");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+    isLoading.value = false;
+  }
 
-  Future<void> logOutUser()async{
-
+  Future<void> logoutUser() async {
     await auth.signOut();
-    Get.offAllNamed("/loginPage");
+    Get.offAllNamed("/authPage");
   }
 
-
-  // creating user in firebase database
-  Future<void> initUser(String email,String name)async{
-
+  Future<void> initUser(String email, String name) async {
     var newUser = UserModel(
-
       email: email,
       name: name,
       id: auth.currentUser!.uid,
-      // phoneNumber: auth.currentUser!.phoneNumber!,
-      // profileImage: auth.currentUser!.photoURL!,
     );
 
-    try{
-      await db.collection("users").doc(auth.currentUser!.uid).set(newUser.toJson());
-
+    try {
+      await db.collection("users").doc(auth.currentUser!.uid).set(
+        newUser.toJson(),
+      );
+    } catch (ex) {
+      print(ex);
     }
-    catch(e){
-      print(e.toString());
-    }
-
   }
 
+  Future<void> resetPassword(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      Get.snackbar("Email sent", "Check your email now");
+    } catch (ex) {
+      print(ex);
+      Get.snackbar("Error", ex.toString());
+    }
+  }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_to_act/slide_to_act.dart';
-
 import '../../../../Config/Strings.dart';
 
 class Welcomefooterbutton extends StatelessWidget {
@@ -12,15 +11,15 @@ class Welcomefooterbutton extends StatelessWidget {
     return SlideAction(
       onSubmit: (){
         Get.offAllNamed("/authPage");
-
+        return null;
       },
       text: WelcomePageString.slideToStart,
-      textStyle: (TextStyle(color: Colors.grey,fontSize: 18)),
-
+      borderRadius: 30,
+      textStyle: (const TextStyle(color: Colors.lightBlue,fontSize: 18)),
       sliderRotate: true,
-      submittedIcon: Icon(Icons.currency_yen_sharp),
-      sliderButtonIcon: Icon(Icons.child_friendly),
-      innerColor: Theme.of(context).colorScheme.primary,
+      submittedIcon: const Icon(Icons.currency_yen_sharp),
+      sliderButtonIcon: const Icon(Icons.child_friendly),
+      innerColor: Colors.lightBlue,
       outerColor: Colors.grey[900],
     );
   }

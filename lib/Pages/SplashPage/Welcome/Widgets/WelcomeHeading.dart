@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../Config/Images.dart';
 import '../../../../Config/Strings.dart';
 
@@ -16,9 +15,9 @@ class Welcomeheading extends StatelessWidget {
           Assetsimage.chatIconSVG,
           height: 80,
         )),
-
-        SizedBox(height: 30,),
-        Text(AppStrings.appName,style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+        const SizedBox(height: 30,),
+        Text(AppStrings.appName,
+          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
             color: Theme.of(context).colorScheme.onPrimary
         ),),
 

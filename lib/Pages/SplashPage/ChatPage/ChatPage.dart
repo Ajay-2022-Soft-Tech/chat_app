@@ -2,16 +2,18 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Config/Images.dart';
-import 'package:chat_app/Controller/ChatController.dart';
-import 'package:chat_app/Controller/ProfileController.dart';
-import 'package:chat_app/Model/ChatModel.dart';
-import 'package:chat_app/Model/UserModel.dart';
-import 'package:chat_app/Pages/SplashPage/ChatPage/Widgets/ChatBubble.dart';
-import 'package:chat_app/Pages/SplashPage/ChatPage/Widgets/TypeMessage.dart';
-import 'package:chat_app/Pages/SplashPage/UserProfilePage/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../../../Controller/CallController.dart';
+import '../../../Controller/ChatController.dart';
+import '../../../Controller/ProfileController.dart';
+import '../../../Model/UserModel.dart';
+import '../CallPage/AudioCallPage.dart';
+import '../CallPage/VideoCall.dart';
+import '../UserProfilePage/ProfilePage.dart';
+import 'Widgets/ChatBubble.dart';
+import 'Widgets/TypeMessage.dart';
 
 class ChatPage extends StatelessWidget {
   final UserModel userModel;
@@ -20,57 +22,67 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ChatController chatController = Get.put(ChatController());
-    TextEditingController messageController = TextEditingController();
     ProfileController profileController = Get.put(ProfileController());
+    CallController callController = Get.put(CallController());
 
     return Scaffold(
-      backgroundColor: Colors.grey[800],
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         leading: InkWell(
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
-          onTap: (){
-            // Get.to(UserProfilePage(userModel: userModel,));
+          onTap: () {
+            Get.to(UserProfilePage(
+              userModel: userModel,
+            ));
           },
           child: Padding(
-            padding: EdgeInsets.all(8),
-            child: Container(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: CachedNetworkImage(
-                    imageUrl: userModel.profileImage ?? Assetsimage.defaultProfileUrl!,
-                    fit: BoxFit.cover,
-                    width: 70,
-                    placeholder: (context, url) =>
-                        CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  )
-                )
-
+            padding: const EdgeInsets.all(5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: CachedNetworkImage(
+                imageUrl:
+                userModel.profileImage ?? Assetsimage.boyPic,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
           ),
         ),
         title: InkWell(
           splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
           highlightColor: Colors.transparent,
-          onTap: (){
-            Get.to(ProfilePage(userModel: userModel,));
+          onTap: () {
+            Get.to(UserProfilePage(
+              userModel: userModel,
+            ));
           },
           child: Row(
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    userModel.name ?? "User",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    "Online",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  ),
+                  Text(userModel.name ?? "User",
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  StreamBuilder(
+                    stream: chatController.getStatus(userModel.id!),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Text("........");
+                      } else {
+                        return Text(
+                          snapshot.data!.status ?? "",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: snapshot.data!.status == "Online"
+                                ? Colors.green
+                                : Colors.grey,
+                          ),
+                        );
+                      }
+                    },
+                  )
                 ],
               ),
             ],
@@ -78,28 +90,42 @@ class ChatPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.call),
+            onPressed: () {
+              Get.to(AudioCallPage(target: userModel));
+              callController.callAction(
+                  userModel, profileController.currentUser.value, "audio");
+            },
+            icon: Icon(
+              Icons.phone,
+            ),
           ),
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.videocam),
-          ),
+            onPressed: () {
+              Get.to(VideoCallPage(target: userModel));
+              callController.callAction(
+                  userModel, profileController.currentUser.value, "video");
+            },
+            icon: Icon(
+              Icons.videocam,
+            ),
+          )
         ],
       ),
       body: Padding(
-
-        padding: const EdgeInsets.only(bottom: 0, top: 10, left: 10, right: 10),
+        padding: EdgeInsets.only(bottom: 10, top: 0, left: 10, right: 10),
         child: Column(
           children: [
             Expanded(
               child: Stack(
-                children :[
-                  StreamBuilder<List<ChatModel>>(
+                children: [
+                  StreamBuilder(
                     stream: chatController.getMessages(userModel.id!),
                     builder: (context, snapshot) {
+                      var roomid = chatController.getRoomId(userModel.id!);
+                      chatController.markMessagesAsRead(roomid!);
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator()
+                        return const Center(
+                          child: CircularProgressIndicator(),
                         );
                       }
                       if (snapshot.hasError) {
@@ -111,71 +137,75 @@ class ChatPage extends StatelessWidget {
                         return const Center(
                           child: Text("No Messages"),
                         );
-                      }
-                      else {
+                      } else {
                         return ListView.builder(
                           reverse: true,
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
-                            DateTime timestamps = DateTime.parse(snapshot.data![index].timestamp!);
-                            String formattedTime = DateFormat("hh:mm a").format(timestamps);
+                            DateTime timestamp = DateTime.parse(
+                                snapshot.data![index].timestamp!);
+                            String formattedTime =
+                            DateFormat('hh:mm a').format(timestamp);
+
                             return ChatBubble(
                               message: snapshot.data![index].message!,
-                              isComing: snapshot.data![index].receiverId == profileController.currentUser.value.id,
-                              time: formattedTime,
-                              status: "Read",
                               imageUrl: snapshot.data![index].imageUrl ?? "",
+                              isComming: snapshot.data![index].receiverId ==
+                                  profileController.currentUser.value.id,
+                              status: snapshot.data![index].readStatus!,
+                              time: formattedTime,
                             );
                           },
                         );
                       }
                     },
                   ),
-                 Obx(()=>
-                     (chatController.selectedImagePath.value != "")?
-                        Positioned(
-                        bottom: 0,
-                        left: 10,
-                        right: 10,
-                        child: Stack(
-                          children: [
-
-
-                            Container(
-                              margin: EdgeInsets.only(bottom: 5),
-                              decoration: BoxDecoration(
-                                  color: Colors.grey[700],
-                                  image: DecorationImage(
-                                      image: FileImage(
-                                          File(
-                                              chatController.selectedImagePath.value
-                                          )
-                                      )
-                                  ),
-                                  borderRadius: BorderRadius.circular(15)
+                  Obx(
+                        () => (chatController.selectedImagePath.value != "")
+                        ? Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Stack(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: FileImage(
+                                  File(chatController
+                                      .selectedImagePath.value),
+                                ),
+                                fit: BoxFit.contain,
                               ),
-
-                              height: 400,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer,
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            Positioned(
-                              right: 0,
-                                child: IconButton(
-                              onPressed: (){
-                                chatController.selectedImagePath.value ="";
+                            height: 500,
+                          ),
+                          Positioned(
+                            right: 0,
+                            child: IconButton(
+                              onPressed: () {
+                                chatController.selectedImagePath.value =
+                                "";
                               },
                               icon: Icon(Icons.close),
-                            )),
-                          ],
-                        ))
-                         : Container(),
-                 )
-
-
-                ]
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                        : Container(),
+                  )
+                ],
               ),
             ),
-            TypeMessage(userModel: userModel,),
-
+            TypeMessage(
+              userModel: userModel,
+            ),
           ],
         ),
       ),

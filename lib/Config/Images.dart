@@ -16,7 +16,7 @@ class Assetsimage{
 
 
   // SVG ICONS ONLY
-  static const appIconSVG = "$iconsPath/app_icon.svg";
+  static const appIconSVG = "$iconsPath/chat-icon.svg";
   static const chatIconSVG = "$iconsPath/chat-icon.svg";
   static const connectSVG = "$iconsPath/connect.svg";
   static const plugSVG = "$iconsPath/plug.svg";
@@ -28,4 +28,11 @@ class Assetsimage{
   static const documentSvg = "$iconsPath/document.svg";
   static const chatMicSvg = "$iconsPath/mic.svg";
   static const chatEmoji = "$iconsPath/emoji.svg";
+
+
+  static const profileVideoCall = "$iconsPath/videoCall.svg";
+  static const profileAudioCall = "$iconsPath/call.svg";
+
+  static const groupAddUser = "$iconsPath/addUser.svg";
+  static const splash = "$imagesPath/splash.json";
 }

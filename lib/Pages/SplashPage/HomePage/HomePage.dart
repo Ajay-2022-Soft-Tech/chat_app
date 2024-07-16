@@ -1,53 +1,64 @@
-import 'package:chat_app/Config/ImagePicker.dart';
-import 'package:chat_app/Config/Strings.dart';
-import 'package:chat_app/Controller/ContactController.dart';
-import 'package:chat_app/Pages/SplashPage/GroupsPage/GroupPage.dart';
-import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/ChatList.dart';
-import 'package:chat_app/Pages/SplashPage/HomePage/Widgets/TabBar.dart';
-import 'package:chat_app/Pages/SplashPage/ProfilePage/ProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../Controller/ProfileController.dart';
+import '../../../Config/ImagePicker.dart';
+import '../CallHistory/CallHistory.dart';
+import '../GroupsPage/GroupPage.dart';
+import '../ProfilePage/ProfilePage.dart';
+import 'Widgets/ChatList.dart';
+import 'Widgets/TabBar.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-
     TabController tabController = TabController(length: 3, vsync: this);
-    ProfileController profileController = Get.put(ProfileController());
-    ContactController contactController = Get.put(ContactController());
+    Get.put(ImagePickerController());
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        title: Text(AppStrings.appName,style: Theme.of(context).textTheme.headlineSmall,),
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(
+          "UniChat",
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+        leading: Icon(Icons.chat),
         actions: [
           IconButton(
-              onPressed: (){
-                // imagePickerController.pickImage();
-                contactController.getChatRoomList();
-              },
-              icon: Icon(Icons.search)
+            onPressed: () {
+              // appController.checkLatestVersion();
+            },
+            icon: Icon(
+              Icons.search,
+            ),
           ),
           IconButton(
-              onPressed: ()async{
-                // Get.toNamed("/profilePage");
-                await profileController.getUserDetails();
-                Get.to(ProfilePage());
-              },
-              icon: Icon(Icons.more_vert)
-          ),
-
+            onPressed: () async {
+              Get.to(ProfilePage());
+            },
+            icon: Icon(
+              Icons.more_vert,
+            ),
+          )
         ],
-        bottom:myTabBar(tabController,context),
+        bottom: myTabBar(tabController, context),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed("/contactPage");
+        },
+        backgroundColor: Colors.blue,
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.onBackground,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -56,18 +67,8 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin{
           children: const [
             ChatList(),
             GroupPage(),
-            Text('Calls'),
-
+            CallHistory(),
           ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Get.toNamed("/contactPage");
-        },
-        child: const Icon(
-          Icons.messenger,
-          color: Colors.lightBlueAccent,
         ),
       ),
     );
