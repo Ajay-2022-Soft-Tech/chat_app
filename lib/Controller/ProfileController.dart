@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../Model/UserModel.dart';
@@ -14,6 +15,7 @@ class ProfileController extends GetxController {
   RxBool isLoading = false.obs;
   Rx<UserModel> currentUser = UserModel().obs;
 
+  @override
   void onInit() async {
     super.onInit();
     await getUserDetails();
@@ -52,23 +54,29 @@ class ProfileController extends GetxController {
       );
       await getUserDetails();
     } catch (ex) {
-      print(ex);
+      if (kDebugMode) {
+        print(ex);
+      }
     }
     isLoading.value = false;
   }
 
   Future<String> uploadFileToFirebase(String imagePath) async {
-    final path = "files/${imagePath}";
-    final file = File(imagePath!);
+    final path = "files/$imagePath";
+    final file = File(imagePath);
     if (imagePath != "") {
       try {
         final ref = store.ref().child(path).putFile(file);
         final uploadTask = await ref.whenComplete(() {});
         final downloadImageUrl = await uploadTask.ref.getDownloadURL();
-        print(downloadImageUrl);
+        if (kDebugMode) {
+          print(downloadImageUrl);
+        }
         return downloadImageUrl;
       } catch (ex) {
-        print(ex);
+        if (kDebugMode) {
+          print(ex);
+        }
         return "";
       }
     }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../Controller/AuthController.dart';
-import '../../../Controller/ProfileController.dart';
 import '../../../Model/UserModel.dart';
 import 'Widgets/UserInfo.dart';
 

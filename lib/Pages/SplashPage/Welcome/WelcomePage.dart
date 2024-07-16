@@ -14,9 +14,9 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      body:  const Padding(
+    return  const Scaffold(
+      backgroundColor: Colors.black,
+      body:  Padding(
         padding: EdgeInsets.all(10.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

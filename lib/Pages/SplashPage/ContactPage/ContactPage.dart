@@ -1,9 +1,7 @@
 import 'package:chat_app/Config/Images.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../Controller/ChatController.dart';
 import '../../../Controller/ContactController.dart';
 import '../../../Controller/ProfileController.dart';
 import '../ChatPage/ChatPage.dart';
@@ -20,7 +18,6 @@ class ContactPage extends StatelessWidget {
     RxBool isSearchEnable = false.obs;
     ContactController contactController = Get.put(ContactController());
     ProfileController profileController = Get.put(ProfileController());
-    ChatController chatController = Get.put(ChatController());
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(

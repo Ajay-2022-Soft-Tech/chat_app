@@ -10,29 +10,29 @@ var pagePath =[
 
   GetPage(
       name:"/authPage",
-      page:()=> AuthPage(),
+      page:()=> const AuthPage(),
     transition: Transition.rightToLeft
   ),
   GetPage(
       name:"/loginPage",
-      page:()=> LoginPage(),
+      page:()=> const LoginPage(),
       transition: Transition.rightToLeft
   ),
 
   GetPage(
       name:"/homePage",
-      page:()=> HomePage(),
+      page:()=> const HomePage(),
       transition: Transition.rightToLeft
   ),
 
   GetPage(
       name:"/contactPage",
-      page:()=> ContactPage(),
+      page:()=> const ContactPage(),
       transition: Transition.rightToLeft
   ),
   GetPage(
       name:"/updateProfilePage",
-      page:()=> UserUpdateProfile(),
+      page:()=> const UserUpdateProfile(),
       transition: Transition.rightToLeft
   ),
 

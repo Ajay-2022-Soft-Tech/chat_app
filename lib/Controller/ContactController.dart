@@ -12,6 +12,7 @@ class ContactController extends GetxController {
   RxBool isLoading = false.obs;
   RxList<UserModel> userList = <UserModel>[].obs;
   RxList<ChatRoomModel> chatRoomList = <ChatRoomModel>[].obs;
+  @override
   void onInit() async {
     super.onInit();
     await getUserList();
@@ -31,7 +32,9 @@ class ContactController extends GetxController {
         },
       );
     } catch (ex) {
-      print(ex);
+      if (kDebugMode) {
+        print(ex);
+      }
     }
     isLoading.value = false;
   }
@@ -59,7 +62,7 @@ class ContactController extends GetxController {
           .set(user.toJson());
     } catch (ex) {
       if (kDebugMode) {
-        print("Error while saving Contact" + ex.toString());
+        print("Error while saving Contact$ex");
       }
     }
   }

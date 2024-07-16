@@ -33,7 +33,7 @@ class CallHistory extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: ListTile(
-                      tileColor: Color(0XFF292F3F),
+                      tileColor: const Color(0XFF292F3F),
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: CachedNetworkImage(
@@ -46,8 +46,8 @@ class CallHistory extends StatelessWidget {
                               ? Assetsimage.defaultProfileUrl
                               : snapshot.data![index].callerPic!,
                           fit: BoxFit.cover,
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
+                          placeholder: (context, url) => const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
                         ),
                       ),
                       title: Text(
@@ -55,7 +55,7 @@ class CallHistory extends StatelessWidget {
                             profileController.currentUser.value.id
                             ? snapshot.data![index].receiverName!
                             : snapshot.data![index].callerName!,
-                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +63,7 @@ class CallHistory extends StatelessWidget {
                           Text(
                             formattedTime, style: TextStyle(color: Colors.grey[600], fontSize: 13),
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           // Text(
                           //   'Duration: ${snapshot.data![index].duration ?? "N/A"} mins',
                           //   style: TextStyle(color: Colors.grey[600], fontSize: 13),
@@ -72,11 +72,11 @@ class CallHistory extends StatelessWidget {
                       ),
                       trailing: snapshot.data![index].type == "video"
                           ? IconButton(
-                        icon: Icon(Icons.video_call, color: Colors.blueAccent),
+                        icon: const Icon(Icons.video_call, color: Colors.blueAccent),
                         onPressed: () {},
                       )
                           : IconButton(
-                        icon: Icon(Icons.call, color: Colors.greenAccent),
+                        icon: const Icon(Icons.call, color: Colors.greenAccent),
                         onPressed: () {},
                       ),
                     ),
@@ -85,8 +85,8 @@ class CallHistory extends StatelessWidget {
               },
             );
           } else {
-            return Center(
-              child: Container(
+            return const Center(
+              child: SizedBox(
                 width: 100,
                 height: 100,
                 child: CircularProgressIndicator(),

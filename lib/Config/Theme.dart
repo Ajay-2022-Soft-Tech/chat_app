@@ -20,7 +20,7 @@ var darkTheme = ThemeData(
     inputDecorationTheme: InputDecorationTheme(
       fillColor: Colors.grey[800], // Background color
       filled: true,
-      contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Padding inside the input field
+      contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Padding inside the input field
       border: OutlineInputBorder( // Border style
         borderRadius: BorderRadius.circular(10.0),
         borderSide: BorderSide(color: Colors.grey[700]!, width: 1.0),
@@ -31,15 +31,15 @@ var darkTheme = ThemeData(
       ),
       focusedBorder: OutlineInputBorder( // Border when the input is focused
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.blue, width: 1.5),
+        borderSide: const BorderSide(color: Colors.blue, width: 1.5),
       ),
       errorBorder: OutlineInputBorder( // Border when there is an error
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.red, width: 1.0),
+        borderSide: const BorderSide(color: Colors.red, width: 1.0),
       ),
       focusedErrorBorder: OutlineInputBorder( // Border when there is an error and input is focused
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.red, width: 1.5),
+        borderSide: const BorderSide(color: Colors.red, width: 1.5),
       ),
       labelStyle: TextStyle(color: Colors.grey[400]), // Style for the label text
       hintStyle: TextStyle(color: Colors.grey[400]), // Style for the hint text
@@ -58,19 +58,19 @@ var darkTheme = ThemeData(
       headlineLarge: TextStyle(
         fontSize: 32,
         color: dPrimaryColor,
-        fontFamily: 'Poppins',
+        fontFamily: 'AlegreyaSansSC',
         fontWeight: FontWeight.w800,
       ),
       headlineMedium: TextStyle(
         fontSize: 30,
         color: donBackgroundColor,
-        fontFamily: 'Poppins',
+        fontFamily: 'AlegreyaSansSC',
         fontWeight: FontWeight.w600,
       ),
       headlineSmall: TextStyle(
         fontSize: 20,
         color: dBackgroundColor,
-        fontFamily: 'Poppins',
+        fontFamily: 'AlegreyaSansSC',
         fontWeight: FontWeight.w600,
       ),
 
@@ -103,7 +103,7 @@ var darkTheme = ThemeData(
       bodyMedium: TextStyle(
         fontSize: 15,
         color: donBackgroundColor,
-        fontFamily: 'Poppins',
+        fontFamily: 'AlegreyaSansSC',
         fontWeight: FontWeight.w500,
       ),
 

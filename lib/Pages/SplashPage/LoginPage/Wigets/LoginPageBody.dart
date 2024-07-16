@@ -19,7 +19,7 @@ class LoginPageBody extends StatelessWidget {
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(20),
-          boxShadow: List.filled(20, BoxShadow(color: Colors.black,blurRadius: 3,spreadRadius: 2))
+          boxShadow: List.filled(20, BoxShadow(color: Colors.black,blurRadius: 3,spreadRadius: 3,blurStyle: BlurStyle.outer))
         ),
         child:Obx(
               () =>  Row(

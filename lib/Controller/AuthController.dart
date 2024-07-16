@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../Model/UserModel.dart';
@@ -21,12 +22,18 @@ class AuthController extends GetxController {
       Get.offAllNamed("/homePage");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        if (kDebugMode) {
+          print('No user found for that email.');
+        }
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        if (kDebugMode) {
+          print('Wrong password provided for that user.');
+        }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     isLoading.value = false;
   }
@@ -39,16 +46,24 @@ class AuthController extends GetxController {
         password: password,
       );
       await initUser(email, name);
-      print("Account Created 🔥🔥");
+      if (kDebugMode) {
+        print("Account Created 🔥🔥");
+      }
       Get.offAllNamed("/homePage");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        if (kDebugMode) {
+          print('The password provided is too weak.');
+        }
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        if (kDebugMode) {
+          print('The account already exists for that email.');
+        }
       }
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     isLoading.value = false;
   }
@@ -70,7 +85,9 @@ class AuthController extends GetxController {
         newUser.toJson(),
       );
     } catch (ex) {
-      print(ex);
+      if (kDebugMode) {
+        print(ex);
+      }
     }
   }
 
@@ -79,7 +96,9 @@ class AuthController extends GetxController {
       await auth.sendPasswordResetEmail(email: email);
       Get.snackbar("Email sent", "Check your email now");
     } catch (ex) {
-      print(ex);
+      if (kDebugMode) {
+        print(ex);
+      }
       Get.snackbar("Error", ex.toString());
     }
   }

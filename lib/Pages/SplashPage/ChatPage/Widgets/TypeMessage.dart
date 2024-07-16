@@ -1,4 +1,5 @@
 import 'package:chat_app/Config/Images.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -22,13 +23,13 @@ class TypeMessage extends StatelessWidget {
 
     return Container(
       // margin: EdgeInsets.all(10),
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           color: Colors.grey[700]),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 30,
             height: 30,
             child: SvgPicture.asset(
@@ -37,16 +38,22 @@ class TypeMessage extends StatelessWidget {
               width: 25,
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: TextField(
               onChanged: (value) {
                 message.value = value;
-                print("typing...");
-                if (value.isNotEmpty) {
+                if (kDebugMode) {
                   print("typing...");
+                }
+                if (value.isNotEmpty) {
+                  if (kDebugMode) {
+                    print("typing...");
+                  }
                 } else {
-                  print("not typing");
+                  if (kDebugMode) {
+                    print("not typing");
+                  }
                 }
               },
               onEditingComplete: () {
@@ -67,7 +74,7 @@ class TypeMessage extends StatelessWidget {
                     chatController.selectedImagePath,
                     imagePickerController);
               },
-              child: Container(
+              child: SizedBox(
                 width: 30,
                 height: 30,
                 child: SvgPicture.asset(
@@ -77,9 +84,9 @@ class TypeMessage extends StatelessWidget {
                 ),
               ),
             )
-                : SizedBox(),
+                : const SizedBox(),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Obx(
                 () => message.value != "" ||
                 chatController.selectedImagePath.value != ""

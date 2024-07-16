@@ -2,9 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_app/Config/Images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-
-import '../../../../Controller/ProfileController.dart';
 
 
 class LoginUserInfo extends StatelessWidget {
@@ -19,7 +16,6 @@ class LoginUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProfileController profileController = Get.put(ProfileController());
     return Container(
       padding: EdgeInsets.all(20),
       // height: 100,

@@ -10,9 +10,9 @@ Future<dynamic> ImagePickerBottomSheet(BuildContext context, RxString imagePath,
   return Get.bottomSheet(
       Container(
     height: 150,
-    decoration: const BoxDecoration(
-      color: Color(0XFF292F3F),
-      borderRadius: BorderRadius.only(
+    decoration:  BoxDecoration(
+      color: Theme.of(context).colorScheme.primary,
+      borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(10),
         topRight: Radius.circular(10),
       ),
@@ -52,7 +52,7 @@ Future<dynamic> ImagePickerBottomSheet(BuildContext context, RxString imagePath,
               color: Theme.of(context).colorScheme.background,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.photo,
               size: 30,
             ),
@@ -67,7 +67,7 @@ Future<dynamic> ImagePickerBottomSheet(BuildContext context, RxString imagePath,
               color: Theme.of(context).colorScheme.background,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.play_arrow,
               size: 30,
             ),

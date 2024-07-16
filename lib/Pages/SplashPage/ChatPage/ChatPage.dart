@@ -44,8 +44,8 @@ class ChatPage extends StatelessWidget {
                 imageUrl:
                 userModel.profileImage ?? Assetsimage.boyPic,
                 fit: BoxFit.cover,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder: (context, url) => const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ),
@@ -95,7 +95,7 @@ class ChatPage extends StatelessWidget {
               callController.callAction(
                   userModel, profileController.currentUser.value, "audio");
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.phone,
             ),
           ),
@@ -105,14 +105,14 @@ class ChatPage extends StatelessWidget {
               callController.callAction(
                   userModel, profileController.currentUser.value, "video");
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.videocam,
             ),
           )
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.only(bottom: 10, top: 0, left: 10, right: 10),
+        padding: const EdgeInsets.only(bottom: 10, top: 0, left: 10, right: 10),
         child: Column(
           children: [
             Expanded(
@@ -122,7 +122,7 @@ class ChatPage extends StatelessWidget {
                     stream: chatController.getMessages(userModel.id!),
                     builder: (context, snapshot) {
                       var roomid = chatController.getRoomId(userModel.id!);
-                      chatController.markMessagesAsRead(roomid!);
+                      chatController.markMessagesAsRead(roomid);
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
                           child: CircularProgressIndicator(),
@@ -169,7 +169,7 @@ class ChatPage extends StatelessWidget {
                       child: Stack(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(bottom: 10),
+                            margin: const EdgeInsets.only(bottom: 10),
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: FileImage(
@@ -192,7 +192,7 @@ class ChatPage extends StatelessWidget {
                                 chatController.selectedImagePath.value =
                                 "";
                               },
-                              icon: Icon(Icons.close),
+                              icon: const Icon(Icons.close),
                             ),
                           ),
                         ],

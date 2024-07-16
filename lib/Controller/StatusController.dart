@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,12 +19,16 @@ class StatusController extends GetxController with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.inactive) {
-      print("❌ Offline");
+      if (kDebugMode) {
+        print("❌ Offline");
+      }
       await db.collection("users").doc(auth.currentUser!.uid).update({
         "Status": "Offline",
       });
     } else if (state == AppLifecycleState.resumed) {
-      print("✅ Online");
+      if (kDebugMode) {
+        print("✅ Online");
+      }
       await db.collection("users").doc(auth.currentUser!.uid).update({
         "Status": "Online",
       });

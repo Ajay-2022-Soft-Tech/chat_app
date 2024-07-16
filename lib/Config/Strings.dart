@@ -1,16 +1,20 @@
-class AppStrings {
-  static const appName = "Uni Chat";
+class AppStrings{
+
+  static const appName = "UniChat" ;
 }
 
-class WelcomePageString {
-  static const appName = "UniChat App";
-  static const nowYouAre = "You're Here!";
-  static const connected = "Stay Connected";
-  static const description = "The Ultimate Connection Solution";
-  static const slideToStart = "Slide to Get Started";
+class WelcomePageString{
 
-  static const connectFriends = "Connect with Ease & Speed";
-  static const descFriends = "Stay in touch effortlessly with our intuitive chat app.";
+  static const appName = "Uni Chat App" ;
+  static const nowYouAre = "Now You Are" ;
+  static const connected = "Connected" ;
+  static const description = "Perfect Solution to Connect With Friend's" ;
+  static const slideToStart = "Slide to Start Now" ;
+
+
+  static const connectFriends = "Connect\nfriends\neasily &\nquickly" ;
+  static const descFriends = "Our chat app is the perfect way to stay connected with friends and family." ;
+
 }
 
 class ZegoCloudConfig {

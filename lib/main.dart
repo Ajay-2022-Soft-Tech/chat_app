@@ -1,5 +1,4 @@
-import 'package:chat_app/Pages/SplashPage/Auth/AuthPage.dart';
-import 'package:chat_app/Pages/SplashPage/LoginPage/LoginPage.dart';
+import 'package:chat_app/Pages/SplashPage/Welcome/WelcomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,7 +6,6 @@ import 'package:get/get.dart';
 
 import 'Config/PagePath.dart';
 import 'Config/Theme.dart';
-import 'Pages/SplashPage/SplashPage/Splash_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -31,7 +29,7 @@ class MyApp extends StatelessWidget {
       getPages: pagePath,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
-      home: const LoginPage(),
+      home: const WelcomePage(),
       // home: DemoPage2(),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
@@ -15,9 +16,8 @@ class ChatController extends GetxController {
   final auth = FirebaseAuth.instance;
   final db = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;
-  var uuid = Uuid();
+  var uuid = const Uuid();
   RxString selectedImagePath = "".obs;
-  @override
   ProfileController profileController = Get.put(ProfileController());
   ContactController contactController = Get.put(ContactController());
   String getRoomId(String targetUserId) {
@@ -102,7 +102,9 @@ class ChatController extends GetxController {
       );
       await contactController.saveContact(targetUser);
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
     isLoading.value = false;
   }

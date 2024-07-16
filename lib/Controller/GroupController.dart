@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -14,7 +15,7 @@ class GroupController extends GetxController {
   final db = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
   RxList<UserModel> groupMembers = <UserModel>[].obs;
-  var uuid = Uuid();
+  var uuid = const Uuid();
   RxBool isLoading = false.obs;
   RxString selectedImagePath = "".obs;
   RxList<GroupModel> groupList = <GroupModel>[].obs;
@@ -62,10 +63,12 @@ class GroupController extends GetxController {
       );
       getGroups();
       successMessage("Group Created");
-      Get.offAll(HomePage());
+      Get.offAll(const HomePage());
       isLoading.value = false;
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

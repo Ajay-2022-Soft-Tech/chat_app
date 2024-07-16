@@ -20,13 +20,13 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.only(bottom: 20),
       child: Column(
         crossAxisAlignment:
         isComming ? CrossAxisAlignment.start : CrossAxisAlignment.end,
         children: [
           Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               constraints: BoxConstraints(
                 maxWidth: MediaQuery.sizeOf(context).width / 1.3,
               ),
@@ -47,7 +47,7 @@ class ChatBubble extends StatelessWidget {
                 ),
               ),
               child: imageUrl == ""
-                  ? Text(message,style: TextStyle(color: Colors.white),)
+                  ? Text(message,style: const TextStyle(color: Colors.white),)
                   : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -62,7 +62,7 @@ class ChatBubble extends StatelessWidget {
                       const Icon(Icons.error),
                     ),
                   ),
-                  message == "" ? Container() : SizedBox(height: 10),
+                  message == "" ? Container() : const SizedBox(height: 10),
                   message == "" ? Container() : Text(message),
                 ],
               )),
