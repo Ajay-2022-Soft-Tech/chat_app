@@ -1,3 +1,7 @@
+import 'package:chat_app/Pages/SplashPage/Auth/AuthPage.dart';
+import 'package:chat_app/Pages/SplashPage/HomePage/HomePage.dart';
+import 'package:chat_app/Pages/SplashPage/LoginPage/LoginPage.dart';
+import 'package:chat_app/Pages/SplashPage/SplashPage/Splash_page.dart';
 import 'package:chat_app/Pages/SplashPage/Welcome/WelcomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +33,7 @@ class MyApp extends StatelessWidget {
       getPages: pagePath,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
-      home: const WelcomePage(),
+      home: const HomePage(),
       // home: DemoPage2(),
     );
   }

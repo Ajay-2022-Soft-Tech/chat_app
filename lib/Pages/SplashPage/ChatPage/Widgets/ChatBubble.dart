@@ -31,7 +31,7 @@ class ChatBubble extends StatelessWidget {
                 maxWidth: MediaQuery.sizeOf(context).width / 1.3,
               ),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Colors.white10,
                 borderRadius: isComming
                     ? const BorderRadius.only(
                   topLeft: Radius.circular(10),
@@ -57,7 +57,7 @@ class ChatBubble extends StatelessWidget {
                       imageUrl: imageUrl,
                       fit: BoxFit.cover,
                       placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
+                      const CircularProgressIndicator(color: Colors.lightBlue,),
                       errorWidget: (context, url, error) =>
                       const Icon(Icons.error),
                     ),
@@ -85,7 +85,7 @@ class ChatBubble extends StatelessWidget {
                   const SizedBox(width: 10),
                   SvgPicture.asset(
                     Assetsimage.chatStatusSvg,
-                    color: status == "read" ? Colors.green : Colors.grey,
+                    color: status == "read" ? Colors.blue : Colors.grey,
                     width: 20,
                   )
                 ],

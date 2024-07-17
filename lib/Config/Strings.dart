@@ -5,7 +5,7 @@ class AppStrings{
 
 class WelcomePageString{
 
-  static const appName = "Uni Chat App" ;
+  static const appName = "Uni Chat" ;
   static const nowYouAre = "Now You Are" ;
   static const connected = "Connected" ;
   static const description = "Perfect Solution to Connect With Friend's" ;
@@ -13,7 +13,7 @@ class WelcomePageString{
 
 
   static const connectFriends = "Connect\nfriends\neasily &\nquickly" ;
-  static const descFriends = "Our chat app is the perfect way to stay connected with friends and family." ;
+  static const descFriends = "Our UniChat is the perfect way to stay connected with friends and family." ;
 
 }
 

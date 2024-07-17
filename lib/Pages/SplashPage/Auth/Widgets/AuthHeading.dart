@@ -26,7 +26,7 @@ class AuthHeading extends StatelessWidget {
         Text(WelcomePageString.descFriends,
           style: TextStyle(
               fontSize: 16,
-              color: Colors.white12,
+              color: Colors.white60,
               fontFamily: "AlegreyaSansSC",
               fontWeight: FontWeight.w800
           ),

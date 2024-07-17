@@ -21,13 +21,13 @@ class GroupTypeMessage extends StatelessWidget {
     GroupController groupController = Get.put(GroupController());
     return Container(
       // margin: EdgeInsets.all(10),
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           color: Colors.grey[800]),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 30,
             height: 30,
             child: SvgPicture.asset(
@@ -37,7 +37,7 @@ class GroupTypeMessage extends StatelessWidget {
               width: 25,
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: TextField(
               onChanged: (value) {
@@ -48,7 +48,7 @@ class GroupTypeMessage extends StatelessWidget {
                   filled: false, hintText: "Type message ..."),
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Obx(
                 () => groupController.selectedImagePath.value == ""
                 ? InkWell(
@@ -58,7 +58,7 @@ class GroupTypeMessage extends StatelessWidget {
                     groupController.selectedImagePath,
                     imagePickerController);
               },
-              child: Container(
+              child: SizedBox(
                 width: 30,
                 height: 30,
                 child: SvgPicture.asset(
@@ -68,9 +68,9 @@ class GroupTypeMessage extends StatelessWidget {
                 ),
               ),
             )
-                : SizedBox(),
+                : const SizedBox(),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Obx(
                 () => message.value != "" ||
                 groupController.selectedImagePath.value != ""
@@ -86,11 +86,11 @@ class GroupTypeMessage extends StatelessWidget {
                 messageController.clear();
                 message.value = "";
               },
-              child: Container(
+              child: SizedBox(
                 width: 30,
                 height: 30,
                 child: groupController.isLoading.value
-                    ? CircularProgressIndicator()
+                    ? const CircularProgressIndicator()
                     : SvgPicture.asset(
                   Assetsimage.sendButtonSvg,
                   color: Colors.lightBlue,
@@ -98,7 +98,7 @@ class GroupTypeMessage extends StatelessWidget {
                 ),
               ),
             )
-                : Container(
+                : SizedBox(
               width: 30,
               height: 30,
               child: SvgPicture.asset(

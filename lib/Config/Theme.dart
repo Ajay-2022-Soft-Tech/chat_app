@@ -23,15 +23,15 @@ var darkTheme = ThemeData(
       contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Padding inside the input field
       border: OutlineInputBorder( // Border style
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.grey[700]!, width: 1.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 1.0),
       ),
       enabledBorder: OutlineInputBorder( // Border when the input is enabled
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.grey[700]!, width: 1.0),
+        borderSide: const BorderSide(color: Colors.transparent, width: 1.0),
       ),
       focusedBorder: OutlineInputBorder( // Border when the input is focused
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: const BorderSide(color: Colors.blue, width: 1.5),
+        borderSide: const BorderSide(color: Colors.transparent, width: 1.5),
       ),
       errorBorder: OutlineInputBorder( // Border when there is an error
         borderRadius: BorderRadius.circular(10.0),

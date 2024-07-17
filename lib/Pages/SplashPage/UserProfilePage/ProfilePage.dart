@@ -16,13 +16,13 @@ class UserProfilePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        title: Text("Profile"),
+        title: const Text("Profile"),
         actions: [
           IconButton(
             onPressed: () {
               Get.toNamed("/updateProfilePage");
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.edit,
             ),
           )
@@ -38,12 +38,12 @@ class UserProfilePage extends StatelessWidget {
               userName: userModel.name ?? "User",
               userEmail: userModel.email ?? "",
             ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () {
                 authController.logoutUser();
               },
-              child: Text("Logout"),
+              child: const Text("Logout"),
             )
           ],
         ),

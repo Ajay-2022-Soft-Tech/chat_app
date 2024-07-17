@@ -16,9 +16,9 @@ class Welcomebody extends StatelessWidget {
           ],
         ),
         Text(WelcomePageString.nowYouAre,style: Theme.of(context).textTheme.headlineMedium,),
-        Text(textAlign: TextAlign.center, WelcomePageString.connected,style: TextStyle(color: Colors.lightBlue,fontSize: 30,fontWeight: FontWeight.w500),),
+        const Text(textAlign: TextAlign.center, WelcomePageString.connected,style: TextStyle(color: Colors.lightBlue,fontSize: 30,fontWeight: FontWeight.w500),),
         const SizedBox(height: 20,),
-        Text(WelcomePageString.description,style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.w500),),
+        const Text(WelcomePageString.description,style: TextStyle(color: Colors.grey,fontSize: 13,fontWeight: FontWeight.w500),),
       ],
     );
   }

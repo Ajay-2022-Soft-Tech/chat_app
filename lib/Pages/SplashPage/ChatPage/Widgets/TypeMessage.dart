@@ -34,7 +34,7 @@ class TypeMessage extends StatelessWidget {
             height: 30,
             child: SvgPicture.asset(
               Assetsimage.chatEmoji,
-              color: Colors.white,
+              color: Colors.yellow,
               width: 25,
             ),
           ),
@@ -64,7 +64,7 @@ class TypeMessage extends StatelessWidget {
                   filled: false, hintText: "Type message ..."),
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Obx(
                 () => chatController.selectedImagePath.value == ""
                 ? InkWell(
@@ -102,11 +102,11 @@ class TypeMessage extends StatelessWidget {
                   message.value = "";
                 }
               },
-              child: Container(
+              child: SizedBox(
                 width: 30,
                 height: 30,
                 child: chatController.isLoading.value
-                    ? CircularProgressIndicator()
+                    ? const CircularProgressIndicator()
                     : SvgPicture.asset(
                   Assetsimage.sendButtonSvg,
                   color: Colors.lightBlue,
@@ -114,7 +114,7 @@ class TypeMessage extends StatelessWidget {
                 ),
               ),
             )
-                : Container(
+                : SizedBox(
               width: 30,
               height: 30,
               child: SvgPicture.asset(

@@ -11,14 +11,10 @@ class Welcomeheading extends StatelessWidget {
     return Column(
       children: [
 
-        Center(child: SvgPicture.asset(
-          Assetsimage.chatIconSVG,
-          height: 80,
-        )),
-        const SizedBox(height: 30,),
+        Center(child: Image.asset("assets/icons/app_icon.png",width: 120,)),
         Text(AppStrings.appName,
           style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onPrimary
+            color: Colors.blue
         ),),
 
       ],

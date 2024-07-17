@@ -18,10 +18,10 @@ class SelectedMembers extends StatelessWidget {
                 (e) => Stack(
               children: [
                 Container(
-                    margin: EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     width: 70,
                     height: 70,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: CachedNetworkImage(
@@ -29,9 +29,9 @@ class SelectedMembers extends StatelessWidget {
                         e.profileImage ?? Assetsimage.defaultProfileUrl,
                         fit: BoxFit.cover,
                         placeholder: (context, url) =>
-                            CircularProgressIndicator(),
+                            const CircularProgressIndicator(),
                         errorWidget: (context, url, error) =>
-                            Icon(Icons.error),
+                            const Icon(Icons.error),
                       ),
                     )),
                 Positioned(
@@ -42,12 +42,12 @@ class SelectedMembers extends StatelessWidget {
                       groupController.groupMembers.remove(e);
                     },
                     child: Container(
-                      padding: EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         color: Colors.black,
                         size: 15,

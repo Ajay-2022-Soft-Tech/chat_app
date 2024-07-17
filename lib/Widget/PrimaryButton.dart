@@ -15,7 +15,7 @@ class PrimaryButton extends StatelessWidget {
       highlightColor: Colors.transparent,
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 40,vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
         decoration: BoxDecoration(
             color: Colors.lightBlueAccent[700],
             borderRadius: BorderRadius.circular(10)
@@ -24,8 +24,8 @@ class PrimaryButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon),
-            SizedBox(width: 10,),
-            Text(btnName,style: TextStyle(fontSize: 20,color: Colors.white,fontFamily: "Poppins"),)
+            const SizedBox(width: 10,),
+            Text(btnName,style: const TextStyle(fontSize: 20,color: Colors.white,fontFamily: "Poppins"),)
           ],
         ),
       ),

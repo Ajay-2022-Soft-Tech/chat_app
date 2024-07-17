@@ -29,21 +29,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           "UniChat",
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        leading: Icon(Icons.chat),
+        leading:  Image.asset("assets/icons/app_icon.png"),
         actions: [
           IconButton(
             onPressed: () {
               // appController.checkLatestVersion();
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
             ),
           ),
           IconButton(
             onPressed: () async {
-              Get.to(ProfilePage());
+              Get.to(const ProfilePage());
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.more_vert,
             ),
           )

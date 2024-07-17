@@ -17,7 +17,7 @@ class LoginUserInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       // height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -31,7 +31,7 @@ class LoginUserInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 150,
                       height: 150,
                       child: ClipRRect(
@@ -40,15 +40,15 @@ class LoginUserInfo extends StatelessWidget {
                           imageUrl: profileImage,
                           fit: BoxFit.cover,
                           placeholder: (context, url) =>
-                              CircularProgressIndicator(),
+                              const CircularProgressIndicator(),
                           errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                              const Icon(Icons.error),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -67,13 +67,13 @@ class LoginUserInfo extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
                       height: 50,
-                      padding: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.grey[400],
@@ -84,8 +84,8 @@ class LoginUserInfo extends StatelessWidget {
 
                           width: 25,
                         ),
-                        SizedBox(width: 10),
-                        Text(
+                        const SizedBox(width: 10),
+                        const Text(
                           "Call",
                           style: TextStyle(
                             color: Colors.black,
@@ -96,7 +96,7 @@ class LoginUserInfo extends StatelessWidget {
                     ),
                     Container(
                       height: 50,
-                      padding: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.grey[400],
@@ -111,8 +111,8 @@ class LoginUserInfo extends StatelessWidget {
 
                           color: Colors.red,
                         ),
-                        SizedBox(width: 10),
-                        Text(
+                        const SizedBox(width: 10),
+                        const Text(
                           "Video",
                           style: TextStyle(
                             color: Colors.black,
@@ -123,7 +123,7 @@ class LoginUserInfo extends StatelessWidget {
                     ),
                     Container(
                       height: 50,
-                      padding: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.grey[400],
@@ -133,8 +133,8 @@ class LoginUserInfo extends StatelessWidget {
                           Assetsimage.appIconSVG,
                           width: 25,
                         ),
-                        SizedBox(width: 10),
-                        Text(
+                        const SizedBox(width: 10),
+                        const Text(
                           "Chat",
                           style: TextStyle(
                             color: Colors.black,

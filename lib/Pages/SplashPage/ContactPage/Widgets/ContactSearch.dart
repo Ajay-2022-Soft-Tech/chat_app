@@ -6,7 +6,7 @@ class ContactSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Theme.of(context).colorScheme.primary,
@@ -19,7 +19,7 @@ class ContactSearch extends StatelessWidget {
                 onSubmitted: (value) => {
                   print(value),
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: "Search contact",
                   prefixIcon: Icon(Icons.search),
                 ),

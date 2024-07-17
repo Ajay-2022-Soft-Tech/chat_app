@@ -9,9 +9,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SvgPicture.asset(
-          Assetsimage.appIconSVG,
-        ),
+        child: Image.asset("assets/icons/app_icon.png",width: 150,),
       ),
     );
   }

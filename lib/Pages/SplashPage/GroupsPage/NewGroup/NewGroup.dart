@@ -18,7 +18,7 @@ class NewGroup extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        title: Text('New Group'),
+        title: const Text('New Group'),
       ),
       floatingActionButton: Obx(
             () => FloatingActionButton(
@@ -29,7 +29,7 @@ class NewGroup extends StatelessWidget {
             if (groupController.groupMembers.isEmpty) {
               Get.snackbar("Error", "Please select atleast one member");
             } else {
-              Get.to(GroupTitle());
+              Get.to(const GroupTitle());
             }
           },
           child: Icon(
@@ -42,8 +42,8 @@ class NewGroup extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
-            SelectedMembers(),
-            SizedBox(height: 10),
+            const SelectedMembers(),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Text(
@@ -52,7 +52,7 @@ class NewGroup extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: StreamBuilder(
                 stream: contactController.getContacts(),

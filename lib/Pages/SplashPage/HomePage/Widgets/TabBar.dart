@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 myTabBar(TabController tabController, BuildContext context){
 
   return PreferredSize(
-      preferredSize: Size.fromHeight(60),
+      preferredSize: const Size.fromHeight(60),
       child: TabBar(
         automaticIndicatorColorAdjustment: true,
         labelColor: Colors.lightBlueAccent,
@@ -16,7 +15,7 @@ myTabBar(TabController tabController, BuildContext context){
         dividerColor: Theme.of(context).colorScheme.primary,
         splashBorderRadius: BorderRadius.circular(90),
         controller: tabController,
-        tabs: [
+        tabs: const [
           Tab(text: 'Chats',),
           Tab(text: 'Groups',),
           Tab(text: 'Calls',),

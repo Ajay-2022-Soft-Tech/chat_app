@@ -11,14 +11,14 @@ class UserUpdateProfile extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text("Update Profile"),
+        title: const Text("Update Profile"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Theme.of(context).colorScheme.primary,
@@ -30,20 +30,20 @@ class UserUpdateProfile extends StatelessWidget {
                         Container(
                           width: 200,
                           height: 200,
-                          child: Center(
-                            child: Icon(
-                              Icons.image,
-                              size: 40,
-                            ),
-                          ),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.background,
                             borderRadius: BorderRadius.circular(
                               100,
                             ),
                           ),
+                          child: const Center(
+                            child: Icon(
+                              Icons.image,
+                              size: 40,
+                            ),
+                          ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             Text(
@@ -52,7 +52,7 @@ class UserUpdateProfile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             Text(
@@ -61,8 +61,8 @@ class UserUpdateProfile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
-                        TextField(
+                        const SizedBox(height: 10),
+                        const TextField(
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             hintText: "Ajay Kumar",
@@ -71,7 +71,7 @@ class UserUpdateProfile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             Text(
@@ -80,8 +80,8 @@ class UserUpdateProfile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
-                        TextField(
+                        const SizedBox(height: 10),
+                        const TextField(
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             hintText: "admine@gmail.com",
@@ -90,7 +90,7 @@ class UserUpdateProfile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Row(
                           children: [
                             Text(
@@ -99,8 +99,8 @@ class UserUpdateProfile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
-                        TextField(
+                        const SizedBox(height: 10),
+                        const TextField(
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             hintText: "0237647324",
@@ -109,7 +109,7 @@ class UserUpdateProfile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

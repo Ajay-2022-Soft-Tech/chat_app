@@ -45,6 +45,7 @@ class SignupForm extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 60),
+
         Obx(
               () => authController.isLoading.value
               ? const CircularProgressIndicator()

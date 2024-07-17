@@ -9,68 +9,99 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
-    AuthController authController = Get.put(AuthController());
-    return Column(
-      children: [
-        const SizedBox(height: 40),
-        TextField(
-          controller: email,
-          decoration: const InputDecoration(
-            hintText: "Email",
-            prefixIcon: Icon(
-              Icons.mail,
-            ),
-          ),
-        ),
-        const SizedBox(height: 30),
-        TextField(
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+    final AuthController authController = Get.put(AuthController());
+    final RxBool isPasswordHidden = true.obs;
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-          controller: password,
-          decoration: const InputDecoration(
-            hintText: "Password",
-            prefixIcon: Icon(
-              Icons.lock,
+    void _login() {
+      if (_formKey.currentState?.validate() ?? false) {
+        authController.login(emailController.text, passwordController.text);
+      } else {
+        Get.snackbar("invalid Credentials", "Please enter valid details",backgroundColor: Colors.red[400],snackPosition: SnackPosition.BOTTOM);
+      }
+    }
+
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          const SizedBox(height: 40),
+          TextFormField(
+            controller: emailController,
+            decoration: const InputDecoration(
+              hintText: "Email",
+              prefixIcon: Icon(Icons.mail),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email';
+              } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                return 'Please enter a valid email';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 30),
+          Obx(
+                () => TextFormField(
+              controller: passwordController,
+              obscureText: isPasswordHidden.value,
+              decoration: InputDecoration(
+                hintText: "Password",
+                prefixIcon: const Icon(Icons.lock),
+                suffixIcon: IconButton(
+                  icon: Icon(isPasswordHidden.value ? Icons.visibility_off : Icons.visibility),
+                  onPressed: () {
+                    isPasswordHidden.value = !isPasswordHidden.value;
+                  },
+                ),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password';
+                } else if (value.length < 6) {
+                  return 'Password must be at least 6 characters';
+                }
+                return null;
+              },
             ),
           ),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            InkWell(
-              onTap: () {
-                // Get.to(ForgotPassword());
-              },
-              child: Text("Forgot Password ? ",
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              InkWell(
+                onTap: () {
+                  // Navigate to ForgotPassword page
+                },
+                child: Text(
+                  "Forgot Password?",
                   style: TextStyle(
                     fontSize: 13,
                     color: Theme.of(context).colorScheme.onPrimary,
-                  )),
-            )
-          ],
-        ),
-        const SizedBox(height: 60),
-        Obx(
-              () => authController.isLoading.value
-              ? CircularProgressIndicator()
-              : Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              PrimaryButton(
-                onTap: () {
-                  authController.login(
-                    email.text,
-                    password.text,
-                  );
-                },
-                btnName: "LOGIN",
-                icon: Icons.lock_open_outlined,
-              ),
+                  ),
+                ),
+              )
             ],
           ),
-        )
-      ],
+          const SizedBox(height: 60),
+          Obx(
+                () => authController.isLoading.value
+                ? const CircularProgressIndicator(color: Colors.lightBlue,)
+                : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PrimaryButton(
+                  onTap: _login,
+                  btnName: "LOGIN",
+                  icon: Icons.lock_open_outlined,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

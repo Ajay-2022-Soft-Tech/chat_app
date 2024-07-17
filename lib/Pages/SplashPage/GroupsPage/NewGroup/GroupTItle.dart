@@ -23,7 +23,7 @@ class GroupTitle extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        title: Text('New Group'),
+        title: const Text('New Group'),
       ),
       floatingActionButton: Obx(
             () => FloatingActionButton(
@@ -50,7 +50,7 @@ class GroupTitle extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(10),
@@ -90,7 +90,7 @@ class GroupTitle extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       TextFormField(
                         onChanged: (value) {
                           groupName.value = value;
@@ -100,14 +100,14 @@ class GroupTitle extends StatelessWidget {
                           prefixIcon: Icon(Icons.group),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 )
               ],
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             child: SingleChildScrollView(
 

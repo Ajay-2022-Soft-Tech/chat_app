@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class NewContactTile extends StatelessWidget {
@@ -27,17 +26,17 @@ class NewContactTile extends StatelessWidget {
             Container(
               width: 70,
               height: 70,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Theme.of(context).colorScheme.primary,
+              ),
               child: Icon(
                 icon,
                 size: 30,
                 color: Colors.lightBlue,
               ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Theme.of(context).colorScheme.primary,
-              ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Text(
               btnName,
               style: Theme.of(context).textTheme.bodyLarge,
