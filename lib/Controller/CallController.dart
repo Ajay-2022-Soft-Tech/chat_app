@@ -33,12 +33,21 @@ class CallController extends GetxController {
   }
 
   Future<void> audioCallNotification(CallModel callData) async {
-    Get.snackbar(
+    Get.rawSnackbar(
       duration: const Duration(days: 1),
-      barBlur: 0,
+      snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.grey[900]!,
       isDismissible: false,
       icon: const Icon(Icons.call),
+      titleText: Text(callData.callerName ?? "Unknown"),
+      messageText: const Text("Incoming Audio Call"),
+      mainButton: TextButton(
+        onPressed: () {
+          endCall(callData);
+          Get.back();
+        },
+        child: const Text("End Call"),
+      ),
       onTap: (snack) {
         Get.back();
         Get.to(
@@ -52,20 +61,10 @@ class CallController extends GetxController {
           ),
         );
       },
-      callData.callerName!,
-      "Incoming Audio Call",
-      mainButton: TextButton(
-        onPressed: () {
-          endCall(callData);
-          Get.back();
-        },
-        child: const Text("End Call"),
-      ),
     );
   }
 
-  Future<void> callAction(
-      UserModel reciver, UserModel caller, String type) async {
+  Future<void> callAction(UserModel receiver, UserModel caller, String type) async {
     String id = uuid;
     DateTime timestamp = DateTime.now();
     String nowTime = DateFormat('hh:mm a').format(timestamp);
@@ -75,31 +74,31 @@ class CallController extends GetxController {
       callerPic: caller.profileImage,
       callerUid: caller.id,
       callerEmail: caller.email,
-      receiverName: reciver.name,
-      receiverPic: reciver.profileImage,
-      receiverUid: reciver.id,
-      receiverEmail: reciver.email,
+      receiverName: receiver.name,
+      receiverPic: receiver.profileImage,
+      receiverUid: receiver.id,
+      receiverEmail: receiver.email,
       status: "dialing",
       type: type,
       time: nowTime,
-      timestamp: DateTime.now().toString(),
+      timestamp: timestamp.toIso8601String(),
     );
 
     try {
       await db
           .collection("notification")
-          .doc(reciver.id)
+          .doc(receiver.id)
           .collection("call")
           .doc(id)
           .set(newCall.toJson());
       await db
           .collection("users")
-          .doc(auth.currentUser!.uid)
+          .doc(auth.currentUser?.uid)
           .collection("calls")
           .add(newCall.toJson());
       await db
           .collection("users")
-          .doc(reciver.id)
+          .doc(receiver.id)
           .collection("calls")
           .add(newCall.toJson());
       Future.delayed(const Duration(seconds: 20), () {
@@ -113,9 +112,14 @@ class CallController extends GetxController {
   }
 
   Stream<List<CallModel>> getCallsNotification() {
-    return FirebaseFirestore.instance
+    final currentUser = auth.currentUser;
+    if (currentUser == null) {
+      return Stream.error("User is not authenticated");
+    }
+
+    return db
         .collection("notification")
-        .doc(auth.currentUser!.uid)
+        .doc(currentUser.uid)
         .collection("call")
         .snapshots()
         .map((snapshot) => snapshot.docs
@@ -139,12 +143,21 @@ class CallController extends GetxController {
   }
 
   void videoCallNotification(CallModel callData) {
-    Get.snackbar(
+    Get.rawSnackbar(
       duration: const Duration(days: 1),
-      barBlur: 0,
+      snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.grey[900]!,
       isDismissible: false,
       icon: const Icon(Icons.video_call),
+      titleText: Text(callData.callerName ?? "Unknown"),
+      messageText: const Text("Incoming Video Call"),
+      mainButton: TextButton(
+        onPressed: () {
+          endCall(callData);
+          Get.back();
+        },
+        child: const Text("End Call"),
+      ),
       onTap: (snack) {
         Get.back();
         Get.to(
@@ -158,15 +171,6 @@ class CallController extends GetxController {
           ),
         );
       },
-      callData.callerName!,
-      "Incoming Video Call",
-      mainButton: TextButton(
-        onPressed: () {
-          endCall(callData);
-          Get.back();
-        },
-        child: const Text("End Call"),
-      ),
     );
   }
 }

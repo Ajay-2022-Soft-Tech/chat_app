@@ -28,8 +28,7 @@ class ContactPage extends StatelessWidget {
               onPressed: () {
                 isSearchEnable.value = !isSearchEnable.value;
               },
-              icon:
-              isSearchEnable.value ? const Icon(Icons.close) : const Icon(Icons.search),
+              icon: isSearchEnable.value ? const Icon(Icons.close) : const Icon(Icons.search),
             ),
           )
         ],
@@ -45,7 +44,6 @@ class ContactPage extends StatelessWidget {
             NewContactTile(
               btnName: "New contact",
               icon: Icons.person_add,
-
               ontap: () {},
             ),
             const SizedBox(height: 10),
@@ -59,33 +57,35 @@ class ContactPage extends StatelessWidget {
             const SizedBox(height: 10),
             const Row(
               children: [
-                Text("Contacts on UniChat",style: TextStyle(color: Colors.grey,fontFamily: "AlegreyaSansSC"),),
+                Text(
+                  "Contacts on UniChat",
+                  style: TextStyle(color: Colors.grey, fontFamily: "AlegreyaSansSC"),
+                ),
               ],
             ),
             const SizedBox(height: 10),
             Obx(
                   () => Column(
-                children: contactController.userList
-                    .map(
-                      (e) => InkWell(
+                children: contactController.userList.map((e) {
+                  String imageUrl = e.profileImage ?? Assetsimage.defaultProfileUrl;
+                  String name = e.name ?? "User";
+                  String lastChat = e.about ?? "Hey there";
+                  String lastTime = e.email == profileController.currentUser.value.email ? "You" : "";
+
+                  return InkWell(
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () {
                       Get.to(ChatPage(userModel: e));
                     },
                     child: ChatTile(
-                      imageUrl:
-                      e.profileImage ?? Assetsimage.defaultProfileUrl,
-                      name: e.name ?? "User",
-                      lastChat: e.about ?? "Hey there",
-                      lastTime: e.email ==
-                          profileController.currentUser.value.email
-                          ? "You"
-                          : "",
+                      imageUrl: imageUrl,
+                      name: name,
+                      lastChat: lastChat,
+                      lastTime: lastTime,
                     ),
-                  ),
-                )
-                    .toList(),
+                  );
+                }).toList(),
               ),
             )
           ],
