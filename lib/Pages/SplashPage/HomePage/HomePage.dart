@@ -1,3 +1,4 @@
+import 'package:chat_app/Controller/AppController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
+    AppController appController = Get.put(AppController());
+
     Get.put(ImagePickerController());
 
     return Scaffold(
@@ -33,7 +36,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         actions: [
           IconButton(
             onPressed: () {
-              // appController.checkLatestVersion();
+              appController.checkLatestVersion();
             },
             icon: const Icon(
               Icons.search,
