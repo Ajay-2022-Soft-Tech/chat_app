@@ -1,16 +1,6 @@
-# chat_app
+``Images of Website``
+<img src="https://github.com/user-attachments/assets/73832edf-1222-4dac-8950-206b7dcc21a2"  width="1200" height="500" />
 
-A new Flutter project.
+<img src="https://github.com/user-attachments/assets/94201d01-1b92-4ac0-a2ec-3a7f1fff5cac"  width="1200" height="500" />
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://github.com/user-attachments/assets/a0953ba7-35a6-4e8e-bbec-9d9b481d0221"  width="1200" height="500" />
